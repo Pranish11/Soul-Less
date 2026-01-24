@@ -1,0 +1,38 @@
+
+.vs/
+*.user
+*.userosscache
+*.suo
+*.VC.db
+*.VC.VC.opendb
+
+
+Debug/
+Release/
+x64/
+x86/
+Win32/
+
+
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ipdb
+*.iobj
+*.ilk
+*.log
+*.tlog
+*.exp
+*.lib
+
+# =========================
+# Executables
+# =========================
+*.exe
+*.dll
+
+
+
+Thumbs.db
+.DS_Store
