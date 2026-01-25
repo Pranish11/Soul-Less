@@ -5,7 +5,6 @@ Tiles::Tiles()
 {
     if (!Wall_Texture.loadFromFile("assets/textures/Wall.png"))
     {
-        // Don't crash, just skip drawing
         std::cerr << "Warning: Failed to load Wall.png\n";
     }
 

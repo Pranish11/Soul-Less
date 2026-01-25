@@ -9,6 +9,7 @@ void Game::run()
 {
     MenuState menu;
     Tiles gametile;
+    bool isinmenu = true;
 
     while (window.isOpen())
     {
@@ -21,11 +22,14 @@ void Game::run()
         window.clear(sf::Color::Black);
 
         // Menu display
-        menu.StartBtnFunction(window);
+        if(isinmenu){
+            menu.StartBtnFunction(window);
+        }
 
         if (menu.isStartClicked==true)
         {
             gametile.draw(window);
+			isinmenu = false;
         }
         
 		// Mouse position
