@@ -9,14 +9,14 @@ class MenuState {
 public:
     MenuState() = default;
     void StartBtnFunction(sf::RenderWindow& window);
-    bool IsInStartMenu = false;
-    bool IsInLoadMenu = false;
+    bool isStartClicked = false;
 
 private:
     sf::RectangleShape Start;
     sf::RectangleShape Quit;
     sf::RectangleShape Load;
-    bool isVisible;
+    bool isVisible = false;
+	
 
 };
 

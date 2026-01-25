@@ -1,6 +1,7 @@
 #pragma once
-#ifndef PROJECT_2_GAME_HPP
-#define PROJECT_2_GAME_HPP
+#ifndef SOUL_LESS_GAME_HPP
+#define SOUL_LESS_GAME_HPP
+
 
 #include <SFML/Graphics.hpp>
 

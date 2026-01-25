@@ -1,5 +1,6 @@
 #include "../include/Game.hpp"
 #include "../include/MenuState.hpp"
+#include "../include/Tiles.hpp"
 #include <iostream>
 
 Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen) {}
@@ -7,6 +8,7 @@ Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscre
 void Game::run()
 {
     MenuState menu;
+    Tiles gametile;
 
     while (window.isOpen())
     {
@@ -21,6 +23,10 @@ void Game::run()
         // Menu display
         menu.StartBtnFunction(window);
 
+        if (menu.isStartClicked==true)
+        {
+            gametile.draw(window);
+        }
         
 		// Mouse position
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);

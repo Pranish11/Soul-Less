@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Soul-Less.vcxproj" />
+  <Project Path="Soul-Less.vcxproj" Id="9ce430e8-30ae-4a48-b8b3-8471fd99e843" />
 </Solution>

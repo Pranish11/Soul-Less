@@ -136,16 +136,23 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
+    <ClCompile Include="src\Tiles.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="Soul-Less.slnx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\MenuState.hpp" />
+    <ClInclude Include="include\Tiles.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Silkscreen-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\Floor.png" />
+    <Image Include="assets\textures\Wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

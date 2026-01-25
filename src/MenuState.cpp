@@ -42,8 +42,9 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     versionText.setFillColor(sf::Color::White);
     versionText.setPosition({ 10.f, 10.f });
 
-    // use instance members (avoid uninitialized locals)
+  
     isVisible = true;
+	isStartClicked = false;
 
     // Rectangles for buttons
     sf::RectangleShape Start;
@@ -73,14 +74,14 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     if (StartButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             isVisible = false;
-            IsInStartMenu = false;
+            isStartClicked = true;
         }
     }
 
     // For load
     if (LoadButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-            IsInLoadMenu = false;
+           
         }
     }
 
@@ -94,11 +95,11 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     if (isVisible) {
         window.draw(title);
         window.draw(versionText);
-        /*window.draw(Start);*/
+        //window.draw(Start);
         window.draw(StartText);
-        /*window.draw(Load);*/
+        //window.draw(Load);
         window.draw(LoadText);
-        /* window.draw(Quit);*/
+        //window.draw(Quit);
         window.draw(QuitText);
     }
 }
