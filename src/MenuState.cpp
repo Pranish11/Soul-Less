@@ -81,7 +81,7 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     // For load
     if (LoadButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-           
+			isVisible = false;
         }
     }
 

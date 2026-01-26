@@ -136,6 +136,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
+    <ClCompile Include="src\Pause.cpp" />
     <ClCompile Include="src\Tiles.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\MenuState.hpp" />
+    <ClInclude Include="include\Pause.hpp" />
     <ClInclude Include="include\Tiles.hpp" />
   </ItemGroup>
   <ItemGroup>

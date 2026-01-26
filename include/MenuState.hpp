@@ -10,13 +10,13 @@ public:
     MenuState() = default;
     void StartBtnFunction(sf::RenderWindow& window);
     bool isStartClicked = false;
+	sf::Font Pixelfont;
 
 private:
     sf::RectangleShape Start;
     sf::RectangleShape Quit;
     sf::RectangleShape Load;
     bool isVisible = false;
-	
 
 };
 

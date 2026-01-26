@@ -9,6 +9,7 @@ class Game {
 public:
     Game();
     void run();
+    sf::Font PixelFont;
 
 private:
     sf::RenderWindow window;

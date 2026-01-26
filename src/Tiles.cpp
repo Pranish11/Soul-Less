@@ -35,13 +35,15 @@ void Tiles::draw(sf::RenderWindow& window)
     };
 
     sf::Sprite wallSprite(Wall_Texture);
+    wallSprite.setScale({2.f,2.f});
     sf::Sprite floorSprite(Floor_Texture);
+	floorSprite.setScale({ 2.f,2.f });
 
     for (int i = 0; i < Rows; ++i)
     {
         for (int j = 0; j < Cols; ++j)
         {
-            sf::Vector2f pos(j * Tile_Size, i * Tile_Size);
+            sf::Vector2f pos(i * Tile_Size, j * Tile_Size);
 
             if (level[i][j] == 1)
             {
