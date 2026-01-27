@@ -1,15 +1,17 @@
 #include "../include/Pause.hpp"
 #include "../include/MenuState.hpp"
 
+// Add constructor implementation
+Pause::Pause(const sf::Font& f) : Pixelfont(f) {
+}
+
 void Pause::PauseDraw(sf::RenderWindow& window)
 {
-	MenuState font;
 	sf::RectangleShape Continue;
 	sf::RectangleShape Save;
 	sf::RectangleShape Exit;
 	bool isPaused = true;
-
-	sf::Vector2i MousePos = sf::Mouse::getPosition();
+	sf::Vector2i MousePos = sf::Mouse::getPosition(window); 
 
 	Continue.setSize({ 200.f, 50.f });
 	Continue.setFillColor(sf::Color(0, 255, 0, 128));
@@ -23,25 +25,24 @@ void Pause::PauseDraw(sf::RenderWindow& window)
 	Exit.setFillColor(sf::Color(255, 0, 0, 128));
 	Exit.setPosition({ 860.f, 600.f });
 
-	
 	sf::FloatRect ContinueGB = Continue.getGlobalBounds();
 	sf::FloatRect SaveGB = Save.getGlobalBounds();
 	sf::FloatRect ExitGB = Exit.getGlobalBounds();
 
 	//Text
-	sf::Text ContinueText(font.Pixelfont);
+	sf::Text ContinueText(Pixelfont);  
 	ContinueText.setString("Continue");
 	ContinueText.setPosition({ 860.f, 400.f });
 	ContinueText.setCharacterSize(48);
 	ContinueText.setFillColor(sf::Color::White);
 
-	sf::Text SaveText(font.Pixelfont);
+	sf::Text SaveText(Pixelfont); 
 	SaveText.setString("Save");
 	SaveText.setPosition({ 860.f, 500.f });
 	SaveText.setCharacterSize(48);
 	SaveText.setFillColor(sf::Color::White);
 
-	sf::Text ExitText(font.Pixelfont);
+	sf::Text ExitText(Pixelfont); 
 	ExitText.setString("Exit");
 	ExitText.setPosition({ 860.f, 600.f });
 	ExitText.setCharacterSize(48);
@@ -51,24 +52,20 @@ void Pause::PauseDraw(sf::RenderWindow& window)
 	window.draw(SaveText);
 	window.draw(ExitText);
 
-
-
-	if (ContinueGB.contains(sf::Vector2f{static_cast<float>(MousePos.x),static_cast<float>(MousePos.y)}))
+	if (ContinueGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }))
 	{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 		{
 			return;
 		}
 	}
-
-	if (SaveGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y)}))
+	if (SaveGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }))
 	{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 		{
 			return;
 		}
 	}
-
 	if (ExitGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }))
 	{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))

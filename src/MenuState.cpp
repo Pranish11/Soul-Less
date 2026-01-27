@@ -1,13 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "../include/MenuState.hpp"
+#include "../include/Pause.hpp"
 
 void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     sf::Font Pixelfont;
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
         std::cerr << "FAILED to load font\n";
     }
-
+    Pause pause(Pixelfont);
     sf::Text title(Pixelfont);
     title.setString("Soul-Less");
     title.setCharacterSize(96);
