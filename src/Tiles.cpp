@@ -17,7 +17,7 @@ Tiles::Tiles()
 
 void Tiles::draw(sf::RenderWindow& window)
 {
-    constexpr float Tile_Size = 32.f;   
+    constexpr float Tile_Size = 64.f;   
     constexpr int Rows = 10;
     constexpr int Cols = 10;
 
