@@ -137,6 +137,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\Pause.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Tiles.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,12 +148,21 @@
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\MenuState.hpp" />
     <ClInclude Include="include\Pause.hpp" />
+    <ClInclude Include="include\Player.hpp" />
     <ClInclude Include="include\Tiles.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Silkscreen-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\textures\BLOB_Forward1.png" />
+    <Image Include="assets\textures\BLOB_Forward2.png" />
+    <Image Include="assets\textures\BLOB_Forward3.png" />
+    <Image Include="assets\textures\BLOB_Forward4.png" />
+    <Image Include="assets\textures\BLOB_Up1.png" />
+    <Image Include="assets\textures\BLOB_Up2.png" />
+    <Image Include="assets\textures\BLOB_Up3.png" />
+    <Image Include="assets\textures\BLOB_Up4.png" />
     <Image Include="assets\textures\Floor.png" />
     <Image Include="assets\textures\Wall.png" />
   </ItemGroup>

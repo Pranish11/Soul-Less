@@ -30,6 +30,9 @@
     <ClCompile Include="src\Pause.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -48,6 +51,9 @@
     <ClInclude Include="include\Pause.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Silkscreen-Regular.ttf" />
@@ -57,6 +63,30 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\Wall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Forward1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Forward2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Forward3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Forward4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Up1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Up2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Up3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\BLOB_Up4.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

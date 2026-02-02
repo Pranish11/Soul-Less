@@ -2,21 +2,27 @@
 #include "../include/Player.hpp"
 #include <iostream>
 
-Player::Player() : moveSpeed(1.5f), playerSprite(playerTexture)
+Player::Player() : moveSpeed(1.5f), playerTexture(), playerSprite(playerTexture)
 {
-    // Load texture first
+  
     if (!playerTexture.loadFromFile("assets/textures/BLOB_Forward1.png"))
     {
-        std::cerr << "Failed to load player texture\n";
+        std::cerr << "Failed to load player texture at: assets/textures/BLOB_Forward1.png\n";
+        return;
     }
 
-    // Set up sprite properties
-    playerSprite.setScale({ 1.5f, 1.5f });
-    playerSprite.setPosition({ 100.f, 100.f });
+    playerSprite = sf::Sprite(playerTexture);
+
+    playerSprite.setTexture(playerTexture);
+    playerSprite.setScale({ 2.5f, 2.5f });
+    playerSprite.setPosition({ 500.f, 300.f });
+    playerSprite.setOrigin({ playerTexture.getSize().x / 2.f, playerTexture.getSize().y / 2.f });
+
+    playerSprite.setColor(sf::Color::White);
 }
 
 void Player::update()
-{
+{   
     // Get current position
     playerSpritePos = playerSprite.getPosition();
 
@@ -32,7 +38,7 @@ void Player::update()
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
         playerSprite.setPosition({ playerSpritePos.x + moveSpeed, playerSpritePos.y });
-    }
+    }   
 }
 
 void Player::draw(sf::RenderWindow& window)
