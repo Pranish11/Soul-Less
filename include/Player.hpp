@@ -17,6 +17,9 @@ private:
     std::optional<sf::Sprite> playerSprite;
     sf::Vector2f playerSpritePos;
     float moveSpeed;
+	sf::FloatRect Player_HitboxPos;
+	sf::Vector2f Player_Hitbox;
+    bool canMoveTo(sf::Vector2f position);
 
     float animationTimer;
     float frameDuration;

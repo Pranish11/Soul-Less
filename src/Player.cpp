@@ -5,7 +5,7 @@
 
 Player::Player() : moveSpeed(0.5f), currentFrame(0), animationTimer(0.0f), frameDuration(0.15f)
 {
-	playerWalkTextures.resize(4);
+    playerWalkTextures.resize(4);
 
     if (!playerWalkTextures[0].loadFromFile("assets/textures/BLOB_Forward1.png") ||
         !playerWalkTextures[1].loadFromFile("assets/textures/BLOB_Forward2.png") ||
@@ -16,7 +16,7 @@ Player::Player() : moveSpeed(0.5f), currentFrame(0), animationTimer(0.0f), frame
     }
 
     playerSprite.emplace(playerWalkTextures[0]);
-    playerSprite->setOrigin({playerWalkTextures[0].getSize().x / 2.f, playerWalkTextures[0].getSize().y / 2.f });
+    playerSprite->setOrigin({ playerWalkTextures[0].getSize().x / 2.f, playerWalkTextures[0].getSize().y / 2.f });
     playerSprite->setScale({ 2.5f, 2.5f });
     playerSprite->setPosition({ 500.f, 300.f });
 }
@@ -24,27 +24,36 @@ Player::Player() : moveSpeed(0.5f), currentFrame(0), animationTimer(0.0f), frame
 void Player::update(float deltaTime)
 {   
 	bool isMoving = false;
+    sf::Vector2f newPosition = playerSprite->getPosition();
 
     // Movement
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
         playerSprite->move({ 0.f, -moveSpeed });
         playerSprite->setRotation(sf::degrees(270));
+        newPosition.y -= moveSpeed;
         isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
         playerSprite->move({ 0.f, moveSpeed });
         playerSprite->setRotation(sf::degrees(90));
+        newPosition.y += moveSpeed;
         isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
         playerSprite->move({ -moveSpeed, 0.f });
 		playerSprite->setRotation(sf::degrees(180));
         isMoving = true;
+        newPosition.x -= moveSpeed;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
         playerSprite->move({ moveSpeed, 0.f });
 		playerSprite->setRotation(sf::degrees(0));
+        newPosition.x += moveSpeed;
         isMoving = true;
+    }
+
+    if (isMoving && canMoveTo(newPosition)) {
+        playerSprite->setPosition(newPosition);
     }
 
     // Animation
@@ -62,8 +71,14 @@ void Player::update(float deltaTime)
         animationTimer = 0.0f;
         playerSprite->setTexture(playerWalkTextures[0]);
     }
-
     playerSpritePos = playerSprite->getPosition();
+}
+
+bool Player::canMoveTo(sf::Vector2f position)
+{
+    // Placeholder 
+    //add colision check
+    return true;
 }
 
 void Player::draw(sf::RenderWindow& window)
