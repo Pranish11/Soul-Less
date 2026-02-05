@@ -159,10 +159,6 @@
     <Image Include="assets\textures\BLOB_Forward2.png" />
     <Image Include="assets\textures\BLOB_Forward3.png" />
     <Image Include="assets\textures\BLOB_Forward4.png" />
-    <Image Include="assets\textures\BLOB_Up1.png" />
-    <Image Include="assets\textures\BLOB_Up2.png" />
-    <Image Include="assets\textures\BLOB_Up3.png" />
-    <Image Include="assets\textures\BLOB_Up4.png" />
     <Image Include="assets\textures\Floor.png" />
     <Image Include="assets\textures\Wall.png" />
   </ItemGroup>

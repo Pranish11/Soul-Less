@@ -11,6 +11,8 @@ Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscre
     }
 }
 
+sf::Clock deltaClock;
+
 void Game::run()
 {
     MenuState menu;
@@ -23,6 +25,9 @@ void Game::run()
 
     while (window.isOpen())
     {
+        sf::Time dt = deltaClock.restart();
+        float deltaTime = dt.asSeconds();
+
         while (auto event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
@@ -52,7 +57,7 @@ void Game::run()
         // In game
         else {
             if (!ispaused) {
-                HumanPlayer.update();
+                HumanPlayer.update(deltaTime);
                 gametile.draw(window);
                 HumanPlayer.draw(window);
             }
