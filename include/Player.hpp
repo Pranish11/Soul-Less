@@ -5,11 +5,12 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <optional>  // for optional
+#include "Tiles.hpp" 
 
 class Player {
 public:
     Player();
-    void update(float deltaTime);
+    void update(float deltaTime,const Tiles& tilemap);
     void draw(sf::RenderWindow& window);
 
 private:
@@ -19,7 +20,7 @@ private:
     float moveSpeed;
 	sf::FloatRect Player_HitboxPos;
 	sf::Vector2f Player_Hitbox;
-    bool canMoveTo(sf::Vector2f position);
+    bool canMoveTo(sf::Vector2f position,const Tiles& tilemap);
 
     float animationTimer;
     float frameDuration;

@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "../include/Player.hpp"
 #include <iostream>
-
+#include "../include/Tiles.hpp"
 
 Player::Player() : moveSpeed(0.5f), currentFrame(0), animationTimer(0.0f), frameDuration(0.15f)
 {
@@ -18,41 +18,38 @@ Player::Player() : moveSpeed(0.5f), currentFrame(0), animationTimer(0.0f), frame
     playerSprite.emplace(playerWalkTextures[0]);
     playerSprite->setOrigin({ playerWalkTextures[0].getSize().x / 2.f, playerWalkTextures[0].getSize().y / 2.f });
     playerSprite->setScale({ 2.5f, 2.5f });
-    playerSprite->setPosition({ 500.f, 300.f });
+    playerSprite->setPosition({ 350.f, 250.f });
 }
 
-void Player::update(float deltaTime)
+void Player::update(float deltaTime, const Tiles& tilemap)
 {   
 	bool isMoving = false;
-    sf::Vector2f newPosition = playerSprite->getPosition();
+    sf::Vector2f currentPos = playerSprite->getPosition();
+    sf::Vector2f newPosition = currentPos;
 
-    // Movement
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-        playerSprite->move({ 0.f, -moveSpeed });
-        playerSprite->setRotation(sf::degrees(270));
         newPosition.y -= moveSpeed;
+        playerSprite->setRotation(sf::degrees(270));
         isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-        playerSprite->move({ 0.f, moveSpeed });
-        playerSprite->setRotation(sf::degrees(90));
         newPosition.y += moveSpeed;
+        playerSprite->setRotation(sf::degrees(90));
         isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-        playerSprite->move({ -moveSpeed, 0.f });
-		playerSprite->setRotation(sf::degrees(180));
-        isMoving = true;
         newPosition.x -= moveSpeed;
+        playerSprite->setRotation(sf::degrees(180));
+        isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-        playerSprite->move({ moveSpeed, 0.f });
-		playerSprite->setRotation(sf::degrees(0));
         newPosition.x += moveSpeed;
+        playerSprite->setRotation(sf::degrees(0));
         isMoving = true;
     }
 
-    if (isMoving && canMoveTo(newPosition)) {
+    // Apply movement only if destination is valid
+    if (isMoving && canMoveTo(newPosition, tilemap)) {
         playerSprite->setPosition(newPosition);
     }
 
@@ -64,21 +61,32 @@ void Player::update(float deltaTime)
             animationTimer = 0.0f;
             currentFrame = (currentFrame + 1) % 4;  
             playerSprite->setTexture(playerWalkTextures[currentFrame]);
+            // recenter origin in case frames differ
+            playerSprite->setOrigin({
+                playerWalkTextures[currentFrame].getSize().x / 2.f,
+                playerWalkTextures[currentFrame].getSize().y / 2.f
+            });
         }
     }
     else {
         currentFrame = 0;
         animationTimer = 0.0f;
         playerSprite->setTexture(playerWalkTextures[0]);
+        playerSprite->setOrigin({
+            playerWalkTextures[0].getSize().x / 2.f,
+            playerWalkTextures[0].getSize().y / 2.f
+        });
     }
+
     playerSpritePos = playerSprite->getPosition();
 }
 
-bool Player::canMoveTo(sf::Vector2f position)
+bool Player::canMoveTo(sf::Vector2f newPosition, const Tiles& tilemap)
 {
-    // Placeholder 
-    //add colision check
-    return true;
+    int tileSize = 64;
+	int tileX = static_cast<int>(newPosition.x) / tileSize;
+	int tileY = static_cast<int>(newPosition.y) / tileSize;
+    return tilemap.getTileAt(tileY, tileX) == 0;
 }
 
 void Player::draw(sf::RenderWindow& window)

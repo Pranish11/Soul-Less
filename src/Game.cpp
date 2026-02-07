@@ -57,7 +57,7 @@ void Game::run()
         // In game
         else {
             if (!ispaused) {
-                HumanPlayer.update(deltaTime);
+                HumanPlayer.update(deltaTime,gametile);
                 gametile.draw(window);
                 HumanPlayer.draw(window);
             }
