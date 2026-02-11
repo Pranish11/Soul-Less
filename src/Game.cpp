@@ -5,7 +5,7 @@
 #include "../include/Player.hpp"
 #include <iostream>
 
-Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen) {
+Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen), inventory(5, 5, 50.f, { 100.f, 100.f }) {
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
         std::cerr << "FAILED to load font\n";
     }
@@ -35,9 +35,16 @@ void Game::run()
 
             // Handle Escape key press
             if (event->is<sf::Event::KeyPressed>()) {
-                if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Escape) {
+                auto keyEvent = event->getIf<sf::Event::KeyPressed>();
+                if (keyEvent->code == sf::Keyboard::Key::Escape) {
                     if (!isinmenu) {
                         ispaused = !ispaused;
+                    }
+                }
+                // Handle E key for inventory toggle
+                if (keyEvent->code == sf::Keyboard::Key::E) {
+                    if (!isinmenu && !ispaused) {
+                        inventoryOpen = !inventoryOpen;
                     }
                 }
             }
@@ -57,7 +64,7 @@ void Game::run()
         // In game
         else {
             if (!ispaused) {
-                HumanPlayer.update(deltaTime,gametile);
+                HumanPlayer.update(deltaTime, gametile);
                 gametile.draw(window);
                 HumanPlayer.draw(window);
             }
@@ -65,6 +72,11 @@ void Game::run()
                 gametile.draw(window);
                 HumanPlayer.draw(window);
                 pausemenu.PauseDraw(window);
+            }
+
+            // Draw inventory if open
+            if (inventoryOpen) {
+                inventory.draw(window);
             }
         }
 

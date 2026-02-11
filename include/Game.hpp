@@ -3,6 +3,7 @@
 #define SOUL_LESS_GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Inventory.hpp"
 
 class Game {
 public:
@@ -12,6 +13,8 @@ public:
 private:
     sf::RenderWindow window;
     sf::Font Pixelfont;
+    Inventory inventory;
+    bool inventoryOpen = false;
 };
 
 #endif
