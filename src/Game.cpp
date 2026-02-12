@@ -5,6 +5,7 @@
 #include "../include/Player.hpp"
 
 #include <iostream>
+#include <memory>
 
 Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen), inventory(5, 5, 50.f, { 100.f, 100.f }) {
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
@@ -23,6 +24,11 @@ void Game::run()
 
     bool isinmenu = true;
     bool ispaused = false;
+
+    Inventory inventory(4, 5, 64.0f, sf::Vector2f(100.f, 100.f));
+    auto TestChair = std::make_unique<Item>("TestChair", "assets/ItemTextures/TestImage.png");
+    inventory.registerItem(TestChair.get());
+    inventory.addItem("TestChair", 1);
 
     while (window.isOpen())
     {
@@ -79,13 +85,7 @@ void Game::run()
             if (inventoryOpen) {
                 inventory.draw(window);
             }
-
-            //test
-            Item* TestChair = new Item("TestChair","assets/ItemTextures/TestImage.png",1);
-            //adding item
-            inventory.addItem(TestChair, 1);
         }
-
         window.display();
     }
 }

@@ -1,14 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Item.hpp"
+#include <string>
+
 class InventorySlot {
 public:
-	int quantity;
-	sf::RectangleShape slotShape;
-	sf::Vector2f InvPosition;
-	Item* item;
+    std::string itemName;  
+    int quantity;
+    sf::RectangleShape background;
+    sf::Vector2f position;
 
-	InventorySlot(sf::Vector2f IvPos, sf::Vector2f size);
-	bool isEmpty();
-
+    InventorySlot(sf::Vector2f pos, sf::Vector2f size);
+    bool isEmpty();
 };

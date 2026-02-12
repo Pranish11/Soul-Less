@@ -1,4 +1,4 @@
-#include "../include/Inventory.hpp" 
+#include "../include/Inventory.hpp"
 
 Inventory::Inventory(int r, int c, float size, sf::Vector2f startPos)
     : rows(r), cols(c), slotSize(size), startPosition(startPos) {
@@ -14,11 +14,22 @@ Inventory::Inventory(int r, int c, float size, sf::Vector2f startPos)
     }
 }
 
-bool Inventory::addItem(Item* newItem, int qty) {
+void Inventory::registerItem(Item* item) {
+    itemDatabase[item->name] = item;
+}
+
+bool Inventory::addItem(std::string itemName, int qty) {
+    // Check if item exists in database
+    if (itemDatabase.find(itemName) == itemDatabase.end()) {
+        return false;
+    }
+
+    Item* itemType = itemDatabase[itemName];
+
     // Try to stack with existing items first
     for (auto& slot : slots) {
-        if (!slot.isEmpty() && slot.item->name == newItem->name) {
-            if (slot.quantity < slot.item->stackSize) {
+        if (!slot.isEmpty() && slot.itemName == itemName) {
+            if (slot.quantity < itemType->stackSize) {
                 slot.quantity += qty;
                 return true;
             }
@@ -28,7 +39,7 @@ bool Inventory::addItem(Item* newItem, int qty) {
     // Find empty slot
     for (auto& slot : slots) {
         if (slot.isEmpty()) {
-            slot.item = newItem;
+            slot.itemName = itemName;
             slot.quantity = qty;
             return true;
         }
@@ -38,18 +49,25 @@ bool Inventory::addItem(Item* newItem, int qty) {
 
 void Inventory::draw(sf::RenderWindow& window) {
     for (auto& slot : slots) {
-        window.draw(slot.slotShape);
+        window.draw(slot.background);
 
-        if (!slot.isEmpty() && slot.item->sprite && slot.item->texture) {
-            slot.item->sprite->setPosition(slot.InvPosition);
+        if (!slot.isEmpty()) {
+            Item* item = itemDatabase[slot.itemName];
 
-            // Scale sprite to fit slot using texture size
-            auto texSize = slot.item->texture->getSize();
-            slot.item->sprite->setScale({
-                slotSize / texSize.x,
-                slotSize / texSize.y
-            });
-            window.draw(*slot.item->sprite);
+            // Create a temporary sprite for this slot
+            if (item->sprite && item->texture) {
+                sf::Sprite tempSprite(*item->texture);
+                tempSprite.setPosition(slot.position);
+
+                // Scale to fit slot using texture size
+                auto texSize = item->texture->getSize();
+                tempSprite.setScale({
+                    slotSize / texSize.x,
+                    slotSize / texSize.y
+                });
+
+                window.draw(tempSprite);
+            }
         }
     }
 }

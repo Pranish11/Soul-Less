@@ -95,9 +95,6 @@
     <Image Include="assets\textures\BLOB_Forward4.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\pixelart\TestImage.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\ItemTextures\TestImage.png">
       <Filter>Resource Files</Filter>
     </Image>

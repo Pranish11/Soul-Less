@@ -161,7 +161,6 @@
     <Font Include="assets\fonts\Silkscreen-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\pixelart\TestImage.png" />
     <Image Include="assets\ItemTextures\TestImage.png" />
     <Image Include="assets\textures\BLOB_Forward1.png" />
     <Image Include="assets\textures\BLOB_Forward2.png" />
