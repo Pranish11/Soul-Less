@@ -3,6 +3,7 @@
 #include "../include/Tiles.hpp"
 #include "../include/Pause.hpp"
 #include "../include/Player.hpp"
+
 #include <iostream>
 
 Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen), inventory(5, 5, 50.f, { 100.f, 100.f }) {
@@ -78,6 +79,11 @@ void Game::run()
             if (inventoryOpen) {
                 inventory.draw(window);
             }
+
+            //test
+            Item* TestChair = new Item("TestChair","assets/ItemTextures/TestImage.png",1);
+            //adding item
+            inventory.addItem(TestChair, 1);
         }
 
         window.display();
