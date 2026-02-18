@@ -86,6 +86,8 @@ void Game::run()
                 inventory.draw(window);
             }
         }
+
+        window.setMouseCursorVisible(true);
         window.display();
     }
 }

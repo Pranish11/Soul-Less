@@ -11,7 +11,7 @@ void Pause::PauseDraw(sf::RenderWindow& window)
 	sf::RectangleShape Save;
 	sf::RectangleShape Exit;
 	bool isPaused = true;
-	sf::Vector2i MousePos = sf::Mouse::getPosition(window); 
+	sf::Vector2i MousePos = sf::Mouse::getPosition(window);
 
 	Continue.setSize({ 200.f, 50.f });
 	Continue.setFillColor(sf::Color(0, 255, 0, 128));
@@ -30,19 +30,19 @@ void Pause::PauseDraw(sf::RenderWindow& window)
 	sf::FloatRect ExitGB = Exit.getGlobalBounds();
 
 	//Text
-	sf::Text ContinueText(Pixelfont);  
+	sf::Text ContinueText(Pixelfont);
 	ContinueText.setString("Continue");
 	ContinueText.setPosition({ 860.f, 400.f });
 	ContinueText.setCharacterSize(48);
 	ContinueText.setFillColor(sf::Color::White);
 
-	sf::Text SaveText(Pixelfont); 
+	sf::Text SaveText(Pixelfont);
 	SaveText.setString("Save");
 	SaveText.setPosition({ 860.f, 500.f });
 	SaveText.setCharacterSize(48);
 	SaveText.setFillColor(sf::Color::White);
 
-	sf::Text ExitText(Pixelfont); 
+	sf::Text ExitText(Pixelfont);
 	ExitText.setString("Exit");
 	ExitText.setPosition({ 860.f, 600.f });
 	ExitText.setCharacterSize(48);

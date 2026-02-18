@@ -13,14 +13,6 @@ Tiles::Tiles()
         std::cerr << "Warning: Failed to load Floor.png\n";
     }
 
-}
-
-void Tiles::draw(sf::RenderWindow& window)
-{
-    constexpr float Tile_Size = 64.f;   
-    constexpr int Rows =17;
-    constexpr int Cols = 30;
-
     // Initialize the member 'level' from a local initializer then copy it into the member array.
     int initLevel[Rows][Cols] = {
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -42,21 +34,26 @@ void Tiles::draw(sf::RenderWindow& window)
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
     };
 
-    // copy into member level
+    // copy into member levell
     for (int i = 0; i < Rows; ++i) {
         for (int j = 0; j < Cols; ++j) {
             level[i][j] = initLevel[i][j];
         }
     }
+}
+
+void Tiles::draw(sf::RenderWindow& window)
+{
+    constexpr float Tile_Size = 64.f;   
 
     sf::Sprite wallSprite(Wall_Texture);
     wallSprite.setScale({2.f,2.f});
     sf::Sprite floorSprite(Floor_Texture);
     floorSprite.setScale({ 2.f,2.f });
 
-    for (int i = 0; i < Rows; ++i)
+    for (int i = 0; i < Rows; ++i) // Assumes Rows and Cols are members of Tiles class
     {
-        for (int j = 0; j < Cols; ++j)
+        for (int j = 0; j < Cols; ++j) // Assumes Rows and Cols are members of Tiles class
         {
             sf::Vector2f pos(j * Tile_Size, i * Tile_Size);
 
