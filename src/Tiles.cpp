@@ -1,4 +1,5 @@
 #include "../include/Tiles.hpp"
+#include "../include/game.hpp"
 #include <iostream>
 
 Tiles::Tiles()
@@ -12,6 +13,7 @@ Tiles::Tiles()
     {
         std::cerr << "Warning: Failed to load Floor.png\n";
     }
+
 
     // Initialize the member 'level' from a local initializer then copy it into the member array.
     int initLevel[Rows][Cols] = {
@@ -34,7 +36,7 @@ Tiles::Tiles()
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
     };
 
-    // copy into member levell
+    // copy into member level
     for (int i = 0; i < Rows; ++i) {
         for (int j = 0; j < Cols; ++j) {
             level[i][j] = initLevel[i][j];

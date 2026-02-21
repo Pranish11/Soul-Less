@@ -15,6 +15,11 @@ Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscre
 
 sf::Clock deltaClock;
 
+const sf::Vector2f& Game::getMouseWorld() const
+{
+    return mouseWorld;
+}
+
 void Game::run()
 {
     MenuState menu;
@@ -29,6 +34,8 @@ void Game::run()
     auto TestChair = std::make_unique<Item>("TestChair", "assets/ItemTextures/TestImage.png");
     inventory.registerItem(TestChair.get());
     inventory.addItem("TestChair", 1);
+
+
 
     while (window.isOpen())
     {
@@ -59,6 +66,8 @@ void Game::run()
 
         window.clear(sf::Color::Black);
 
+
+
         // Menu display
         if (isinmenu) {
             menu.StartBtnFunction(window);
@@ -84,10 +93,14 @@ void Game::run()
             // Draw inventory if open
             if (inventoryOpen) {
                 inventory.draw(window);
+                inventory.update(mouseWorld);
             }
         }
 
         window.setMouseCursorVisible(true);
+        mouseWorld = window.mapPixelToCoords(
+            sf::Mouse::getPosition(window)
+        );
         window.display();
     }
 }

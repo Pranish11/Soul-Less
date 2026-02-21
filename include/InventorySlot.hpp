@@ -4,11 +4,14 @@
 
 class InventorySlot {
 public:
-    std::string itemName;  
+    InventorySlot();
+    InventorySlot(sf::Vector2f pos, sf::Vector2f size);
+
+    void update(const sf::Vector2f& mouseWorld);
+    bool isEmpty() const;
+
+    std::string itemName;
     int quantity;
     sf::RectangleShape background;
     sf::Vector2f position;
-
-    InventorySlot(sf::Vector2f pos, sf::Vector2f size);
-    bool isEmpty();
 };

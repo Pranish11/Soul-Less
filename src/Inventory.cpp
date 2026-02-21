@@ -1,15 +1,15 @@
 #include "../include/Inventory.hpp"
 
 Inventory::Inventory(int r, int c, float size, sf::Vector2f startPos)
-    : rows(r), cols(c), slotSize(size), startPosition(startPos) {
-
+    : rows(r), cols(c), slotSize(size), startPosition(startPos)
+{
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             sf::Vector2f pos(
                 startPos.x + j * (size + 5.f),
                 startPos.y + i * (size + 5.f)
             );
-            slots.push_back(InventorySlot(pos, sf::Vector2f(size, size)));
+            slots.emplace_back(pos, sf::Vector2f(size, size));
         }
     }
 }
@@ -18,25 +18,21 @@ void Inventory::registerItem(Item* item) {
     itemDatabase[item->name] = item;
 }
 
-bool Inventory::addItem(std::string itemName, int qty) {
-    // Check if item exists in database
-    if (itemDatabase.find(itemName) == itemDatabase.end()) {
+bool Inventory::addItem(const std::string& itemName, int qty) {
+    if (itemDatabase.find(itemName) == itemDatabase.end())
         return false;
-    }
 
     Item* itemType = itemDatabase[itemName];
 
-    // Try to stack with existing items first
     for (auto& slot : slots) {
         if (!slot.isEmpty() && slot.itemName == itemName) {
-            if (slot.quantity < itemType->stackSize) {
+            if (slot.quantity + qty <= itemType->stackSize) {
                 slot.quantity += qty;
                 return true;
             }
         }
     }
 
-    // Find empty slot
     for (auto& slot : slots) {
         if (slot.isEmpty()) {
             slot.itemName = itemName;
@@ -47,26 +43,28 @@ bool Inventory::addItem(std::string itemName, int qty) {
     return false;
 }
 
+void Inventory::update(const sf::Vector2f& mouseWorld) {
+    for (auto& slot : slots) {
+        slot.update(mouseWorld);
+    }
+}
+
 void Inventory::draw(sf::RenderWindow& window) {
     for (auto& slot : slots) {
         window.draw(slot.background);
 
         if (!slot.isEmpty()) {
             Item* item = itemDatabase[slot.itemName];
+            if (item && item->texture) {
+                sf::Sprite sprite(*item->texture);
+                sprite.setPosition(slot.position);
 
-            // Create a temporary sprite for this slot
-            if (item->sprite && item->texture) {
-                sf::Sprite tempSprite(*item->texture);
-                tempSprite.setPosition(slot.position);
-
-                // Scale to fit slot using texture size
                 auto texSize = item->texture->getSize();
-                tempSprite.setScale({
-                    slotSize / texSize.x,
-                    slotSize / texSize.y
-                });
+                sprite.setScale(
+                    sf::Vector2f{ slotSize / texSize.x,slotSize / texSize.y }
+                );
 
-                window.draw(tempSprite);
+                window.draw(sprite);
             }
         }
     }
