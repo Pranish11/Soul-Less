@@ -25,10 +25,18 @@ bool InventorySlot::isEmpty() const {
 
 void InventorySlot::update(const sf::Vector2f& mouseWorld)
 {
-    if (background.getGlobalBounds().contains(mouseWorld)) {
-        background.setOutlineColor(sf::Color::Blue);
+    if (background.getGlobalBounds().contains(mouseWorld)&& isClicked == false && holdClick==false) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            background.setFillColor(sf::Color(100, 100, 100));
+            background.setOutlineColor(sf::Color::Blue);
+            isClicked = true;
+			holdClick = true;
+        }
     }
-    else {
-        background.setOutlineColor(sf::Color::White);
+    else if (isClicked == false) {
+        if (holdClick == false){
+            background.setOutlineColor(sf::Color::White);
+            background.setFillColor(sf::Color(50, 50, 50));
+        }
     }
 }

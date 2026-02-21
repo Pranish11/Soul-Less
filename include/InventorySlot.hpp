@@ -9,6 +9,8 @@ public:
 
     void update(const sf::Vector2f& mouseWorld);
     bool isEmpty() const;
+    bool isClicked = false;
+    bool holdClick = false;
 
     std::string itemName;
     int quantity;
