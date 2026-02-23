@@ -1,18 +1,27 @@
 #include <iostream>
 #include <cstdint>
-#include <cmath>
-#include <algorithm>
 
 #include "../include/DayAndNight.hpp"
 #include "../include/Game.hpp"
 
 DayAndNight::DayAndNight(): daylenght(60.f),progress(0.f),alpha(0),daySprite(dayTexture),nightSprite(nightTexture)
 {
-	dayTexture.loadFromFile("assets/textures/Am_time.png");
-	nightTexture.loadFromFile("assets/textures/Pm_time.png");
+	if (!dayTexture.loadFromFile("assets/textures/Am_time.png"))
+	{
+		std::cerr << "Error: Failed to load Am_time.png\n";
+	}
+	if (!nightTexture.loadFromFile("assets/textures/Pm_time.png"))
+	{
+		std::cerr << "Error: Failed to load Pm_time.png\n";
+	}
 
-	daySprite.setPosition({ 0.f, 0.f });
-	nightSprite.setPosition({ 0.f, 0.f });
+	daySprite = sf::Sprite(dayTexture);
+	nightSprite = sf::Sprite(nightTexture);
+
+	float cycleScale = 2.5f;
+
+	daySprite.setScale({cycleScale,cycleScale});
+	nightSprite.setScale({ cycleScale,cycleScale});
 
 	nightOverlay.setSize(sf::Vector2f(1920.f, 1080.f));
 	nightOverlay.setFillColor(sf::Color(0, 0, 0, 0));

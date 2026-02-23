@@ -97,16 +97,14 @@ void Game::run()
                 inventory.draw(window);
                 inventory.update(mouseWorld);
             }
+            //day and night
+            timecycle.update();
+            timecycle.draw(window);
         }
 
-        //day and night
-		timecycle.update();
-        timecycle.draw(window);
 
         window.setMouseCursorVisible(true);
-        mouseWorld = window.mapPixelToCoords(
-            sf::Mouse::getPosition(window)
-        );
+        mouseWorld = window.mapPixelToCoords(sf::Mouse::getPosition(window));
         window.display();
     }
 }
