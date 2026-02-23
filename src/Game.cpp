@@ -3,6 +3,7 @@
 #include "../include/Tiles.hpp"
 #include "../include/Pause.hpp"
 #include "../include/Player.hpp"
+#include "../include/DayAndNight.hpp"
 
 #include <iostream>
 #include <memory>
@@ -26,6 +27,7 @@ void Game::run()
     Tiles gametile;
     Pause pausemenu(Pixelfont);
     Player HumanPlayer;
+    DayAndNight timecycle;
 
     bool isinmenu = true;
     bool ispaused = false;
@@ -96,6 +98,9 @@ void Game::run()
                 inventory.update(mouseWorld);
             }
         }
+
+        //day and night
+		timecycle.update();
 
         window.setMouseCursorVisible(true);
         mouseWorld = window.mapPixelToCoords(

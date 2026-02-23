@@ -11,7 +11,6 @@ public:
     void run();
 
     const sf::Vector2f& getMouseWorld() const;
-
 private:
     sf::RenderWindow window;
     sf::Font Pixelfont;
