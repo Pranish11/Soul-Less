@@ -3,12 +3,21 @@
 
 class DayAndNight {
 public:
-	DayAndNight();
-	void update();
-	sf::Clock dayNightClock;
-	float daylenght;
-	void draw(sf::RenderWindow& window);
+    DayAndNight();
+    void update();
+    void draw(sf::RenderWindow& window);
 
-	sf::RectangleShape nightOverlay;
+private:
+    sf::Clock dayNightClock;
+    float progress;
+    float daylenght;
+    std::uint8_t alpha;
 
+    sf::Texture dayTexture;
+    sf::Texture nightTexture;
+
+    sf::Sprite daySprite;
+    sf::Sprite nightSprite;
+
+    sf::RectangleShape nightOverlay;
 };

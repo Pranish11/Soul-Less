@@ -101,6 +101,7 @@ void Game::run()
 
         //day and night
 		timecycle.update();
+        timecycle.draw(window);
 
         window.setMouseCursorVisible(true);
         mouseWorld = window.mapPixelToCoords(

@@ -1,7 +1,7 @@
 #include "../include/Pause.hpp"
 #include "../include/MenuState.hpp"
 
-// Add constructor implementation
+
 Pause::Pause(const sf::Font& f) : Pixelfont(f) {
 }
 

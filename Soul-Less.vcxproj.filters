@@ -42,6 +42,9 @@
     <ClCompile Include="src\Inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\DayAndNight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -72,6 +75,9 @@
     <ClInclude Include="include\Inventory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\DayAndNight.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Silkscreen-Regular.ttf" />
@@ -96,6 +102,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\ItemTextures\TestImage.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Am_time.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pm_time.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

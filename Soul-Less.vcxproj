@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\DayAndNight.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Inventory.cpp" />
     <ClCompile Include="src\InventorySlot.cpp" />
@@ -148,6 +149,7 @@
     <None Include="Soul-Less.slnx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\DayAndNight.hpp" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\Inventory.hpp" />
     <ClInclude Include="include\InventorySlot.hpp" />
@@ -162,11 +164,13 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ItemTextures\TestImage.png" />
+    <Image Include="assets\textures\Am_time.png" />
     <Image Include="assets\textures\BLOB_Forward1.png" />
     <Image Include="assets\textures\BLOB_Forward2.png" />
     <Image Include="assets\textures\BLOB_Forward3.png" />
     <Image Include="assets\textures\BLOB_Forward4.png" />
     <Image Include="assets\textures\Floor.png" />
+    <Image Include="assets\textures\pm_time.png" />
     <Image Include="assets\textures\Wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

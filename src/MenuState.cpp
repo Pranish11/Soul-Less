@@ -3,6 +3,8 @@
 #include "../include/MenuState.hpp"
 #include "../include/Pause.hpp"
 
+// i can make this better but idc.
+
 void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     sf::Font Pixelfont;
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
