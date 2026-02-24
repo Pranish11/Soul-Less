@@ -1,6 +1,4 @@
 #pragma once
-#ifndef SOUL_LESS_PAUSE_HPP
-#define SOUL_LESS_PAUSE_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -16,5 +14,3 @@ private:
     sf::RectangleShape Save;
     sf::RectangleShape Exit;
 };
-
-#endif

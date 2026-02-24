@@ -1,6 +1,4 @@
 #pragma once
-#ifndef PROJECT_2_MENUSTATE_HPP
-#define PROJECT_2_MENUSTATE_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -16,5 +14,3 @@ private:
     sf::RectangleShape Load;
     bool isVisible = false;
 };
-
-#endif

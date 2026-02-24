@@ -1,6 +1,4 @@
 #pragma once
-#ifndef SOUL_LESS_GAME_HPP
-#define SOUL_LESS_GAME_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Inventory.hpp"
@@ -18,5 +16,3 @@ private:
     bool inventoryOpen = false;
     sf::Vector2f mouseWorld;
 };
-
-#endif

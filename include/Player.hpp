@@ -1,6 +1,4 @@
 #pragma once
-#ifndef SOUL_LESS_PLAYER_HPP
-#define SOUL_LESS_PLAYER_HPP
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -26,5 +24,3 @@ private:
     float frameDuration;
 	int currentFrame = 0;
 };
-
-#endif // SOUL_LESS_PLAYER_HPPSOUL_LESS_PLAYER_HPP

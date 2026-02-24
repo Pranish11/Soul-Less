@@ -90,10 +90,11 @@ void Game::run()
                 gametile.draw(window);
                 HumanPlayer.draw(window);
                 pausemenu.PauseDraw(window);
+				inventoryOpen = false;
             }
 
             // Draw inventory if open
-            if (inventoryOpen) {
+            if (!ispaused && inventoryOpen) {
                 inventory.draw(window);
                 inventory.update(mouseWorld);
             }
