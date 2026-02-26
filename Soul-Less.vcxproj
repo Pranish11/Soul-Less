@@ -134,44 +134,44 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\DayAndNight.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\Inventory.cpp" />
-    <ClCompile Include="src\InventorySlot.cpp" />
-    <ClCompile Include="src\Item.cpp" />
-    <ClCompile Include="src\MenuState.cpp" />
-    <ClCompile Include="src\Pause.cpp" />
-    <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\Tiles.cpp" />
+    <ClCompile Include="src/Day_Night_Cycle/DayAndNight.cpp" />
+    <ClCompile Include="src/Game.cpp" />
+    <ClCompile Include="src/inventory/Inventory.cpp" />
+    <ClCompile Include="src/inventory/InventorySlot.cpp" />
+    <ClCompile Include="src/items/Item.cpp" />
+    <ClCompile Include="src/level/Tiles.cpp" />
+    <ClCompile Include="src/Menu/MenuState.cpp" />
+    <ClCompile Include="src/Menu/Pause.cpp" />
+    <ClCompile Include="src/player/Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="Soul-Less.slnx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\DayAndNight.hpp" />
-    <ClInclude Include="include\Game.hpp" />
-    <ClInclude Include="include\Inventory.hpp" />
-    <ClInclude Include="include\InventorySlot.hpp" />
-    <ClInclude Include="include\Item.hpp" />
-    <ClInclude Include="include\MenuState.hpp" />
-    <ClInclude Include="include\Pause.hpp" />
-    <ClInclude Include="include\Player.hpp" />
-    <ClInclude Include="include\Tiles.hpp" />
+    <ClInclude Include="include/Day_Night_Cycle/DayAndNight.hpp" />
+    <ClInclude Include="include/Game.hpp" />
+    <ClInclude Include="include/inventory/Inventory.hpp" />
+    <ClInclude Include="include/inventory/InventorySlot.hpp" />
+    <ClInclude Include="include/items/Item.hpp" />
+    <ClInclude Include="include/level/Tiles.hpp" />
+    <ClInclude Include="include/Menu/MenuState.hpp" />
+    <ClInclude Include="include/Menu/Pause.hpp" />
+    <ClInclude Include="include/player/Player.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="assets\fonts\Silkscreen-Regular.ttf" />
+    <Font Include="assets/fonts/Silkscreen-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\ItemTextures\TestImage.png" />
-    <Image Include="assets\textures\Am_time.png" />
-    <Image Include="assets\textures\BLOB_Forward1.png" />
-    <Image Include="assets\textures\BLOB_Forward2.png" />
-    <Image Include="assets\textures\BLOB_Forward3.png" />
-    <Image Include="assets\textures\BLOB_Forward4.png" />
-    <Image Include="assets\textures\Floor.png" />
-    <Image Include="assets\textures\pm_time.png" />
-    <Image Include="assets\textures\Wall.png" />
+    <Image Include="assets/ItemTextures/TestImage.png" />
+    <Image Include="assets/textures/Am_time.png" />
+    <Image Include="assets/textures/BLOB_Forward1.png" />
+    <Image Include="assets/textures/BLOB_Forward2.png" />
+    <Image Include="assets/textures/BLOB_Forward3.png" />
+    <Image Include="assets/textures/BLOB_Forward4.png" />
+    <Image Include="assets/textures/Floor.png" />
+    <Image Include="assets/textures/pm_time.png" />
+    <Image Include="assets/textures/Wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
