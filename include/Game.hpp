@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Inventory.hpp"
+#include "inventory/Inventory.hpp"
 
 class Game {
 public:

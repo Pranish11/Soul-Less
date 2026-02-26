@@ -1,9 +1,9 @@
 #include "../include/Game.hpp"
-#include "../include/MenuState.hpp"
-#include "../include/Tiles.hpp"
-#include "../include/Pause.hpp"
-#include "../include/Player.hpp"
-#include "../include/DayAndNight.hpp"
+#include "../include/Menu/MenuState.hpp"
+#include "../include/level/Tiles.hpp"
+#include "../include/Menu/Pause.hpp"
+#include "../include/player/Player.hpp"
+#include "../include/Day_Night_Cycle/DayAndNight.hpp"
 
 #include <iostream>
 #include <memory>
@@ -32,7 +32,7 @@ void Game::run()
     bool isinmenu = true;
     bool ispaused = false;
 
-    Inventory inventory(4, 5, 64.0f, sf::Vector2f(100.f, 100.f));
+    Inventory inventory(4, 5, 64.0f, sf::Vector2f(600.f, 300.f));
     auto TestChair = std::make_unique<Item>("TestChair", "assets/ItemTextures/TestImage.png");
     inventory.registerItem(TestChair.get());
     inventory.addItem("TestChair", 1);
