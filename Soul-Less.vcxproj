@@ -143,6 +143,7 @@
     <ClCompile Include="src/Menu/MenuState.cpp" />
     <ClCompile Include="src/Menu/Pause.cpp" />
     <ClCompile Include="src/player/Player.cpp" />
+    <ClCompile Include="src\phone\phone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -158,6 +159,7 @@
     <ClInclude Include="include/Menu/MenuState.hpp" />
     <ClInclude Include="include/Menu/Pause.hpp" />
     <ClInclude Include="include/player/Player.hpp" />
+    <ClInclude Include="include\phone\phone.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets/fonts/Silkscreen-Regular.ttf" />
@@ -172,6 +174,7 @@
     <Image Include="assets/textures/Floor.png" />
     <Image Include="assets/textures/pm_time.png" />
     <Image Include="assets/textures/Wall.png" />
+    <Image Include="assets\textures\Phone.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

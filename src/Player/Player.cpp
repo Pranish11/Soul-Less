@@ -4,7 +4,7 @@
 #include "../../include/items/Item.hpp" 
 #include <iostream>
 
-Player::Player() : moveSpeed(0.5f), currentFrame(0), animationTimer(0.0f), frameDuration(0.15f)
+Player::Player() : moveSpeed(1.f), currentFrame(0), animationTimer(0.0f), frameDuration(0.15f)
 {
     playerWalkTextures.resize(4);
 

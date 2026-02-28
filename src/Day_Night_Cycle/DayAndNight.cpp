@@ -45,6 +45,7 @@ void DayAndNight::draw(sf::RenderWindow& window) {
 		//day
 		window.draw(daySprite);
 	} else {
+		//night
 		window.draw(nightSprite);
 	}
 

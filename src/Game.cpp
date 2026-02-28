@@ -4,6 +4,7 @@
 #include "../include/Menu/Pause.hpp"
 #include "../include/player/Player.hpp"
 #include "../include/Day_Night_Cycle/DayAndNight.hpp"
+#include "../include/phone/phone.hpp"
 
 #include <iostream>
 #include <memory>
@@ -12,6 +13,7 @@ Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscre
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
         std::cerr << "FAILED to load font\n";
     }
+    window.setFramerateLimit(144);
 }
 
 sf::Clock deltaClock;
@@ -28,9 +30,11 @@ void Game::run()
     Pause pausemenu(Pixelfont);
     Player HumanPlayer;
     DayAndNight timecycle;
+	phone Human_Player_Phone;
 
     bool isinmenu = true;
     bool ispaused = false;
+    bool isPhoneOpen = false;
 
     Inventory inventory(4, 5, 64.0f, sf::Vector2f(600.f, 300.f));
     auto TestChair = std::make_unique<Item>("TestChair", "assets/ItemTextures/TestImage.png");
@@ -63,12 +67,17 @@ void Game::run()
                         inventoryOpen = !inventoryOpen;
                     }
                 }
+                if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
+                {
+                    if (keyPressed->code == sf::Keyboard::Key::P)
+                    {
+                        isPhoneOpen = !isPhoneOpen; // toggle
+                    }
+                }
             }
         }
 
         window.clear(sf::Color::Black);
-
-
 
         // Menu display
         if (isinmenu) {
@@ -93,11 +102,18 @@ void Game::run()
 				inventoryOpen = false;
             }
 
+            //Phone
+            if (isPhoneOpen)
+            {
+                Human_Player_Phone.draw(window);
+            }
+
             // Draw inventory if open
             if (!ispaused && inventoryOpen) {
                 inventory.draw(window);
                 inventory.update(mouseWorld);
             }
+
             //day and night
             timecycle.update();
             timecycle.draw(window);
