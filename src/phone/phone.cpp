@@ -1,6 +1,6 @@
 #include "../../include/phone/phone.hpp"
 #include "../../include/Game.hpp"
-
+#include "../../include/phone/IDApp.hpp"
 
 #include <iostream>
 
@@ -70,54 +70,65 @@ phone::phone(): phoneSprite(phoneTexture){
 	sf::FloatRect illegalAppBounds  = Illegal_App_Rect.getGlobalBounds();
 	sf::FloatRect businessAppBounds = Business_App_Rect.getGlobalBounds();
 
-
+    bool AppOpened = false;
 }
-void phone::update(sf::RenderWindow& window)
-{
-    sf::Vector2i mousePosPixel = sf::Mouse::getPosition(window);
-    sf::Vector2f mousePosPhone = window.mapPixelToCoords(mousePosPixel);
 
-    if (Bank_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
+{
+    if (IDApplicationOpen)
+    {
+        idApp.update(mouseWorld, *this);
+        return; // block icon clicks while app is open
+    }
+
+    if (Bank_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             std::cout << "Bank App Clicked\n";
         }
     }
 
-    if (Shop_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+    if (Shop_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             std::cout << "Shop App Clicked\n";
         }
     }
 
-    if (ID_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+    if (ID_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             std::cout << "ID App Clicked\n";
+            idApp.is_ID_App_Open = true;
+            IDApplicationOpen = true;
         }
     }
 
-    if (Illegal_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+    if (Illegal_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             std::cout << "Illegal App Clicked\n";
         }
     }
 
-    if (Business_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+    if (Business_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             std::cout << "Business App Clicked\n";
         }
     }
 }
 
-
-
 void phone::draw(sf::RenderWindow& window)
 {
-		window.draw(phoneSprite);
-		if (isPhoneHidden == false) {
-            window.draw(Bank_App_Rect);
-            window.draw(Shop_App_Rect);
-            window.draw(ID_App_Rect);
-            window.draw(Illegal_App_Rect);
-            window.draw(Business_App_Rect);
-        }
+    window.draw(phoneSprite);
+
+    if (!isPhoneHidden && !IDApplicationOpen)
+    {
+        window.draw(Bank_App_Rect);
+        window.draw(Shop_App_Rect);
+        window.draw(ID_App_Rect);
+        window.draw(Illegal_App_Rect);
+        window.draw(Business_App_Rect);
+    }
+
+    if (IDApplicationOpen)
+    {
+        idApp.draw(window);
+    }
 }

@@ -48,6 +48,9 @@
     <ClCompile Include="src\phone\phone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\phone\IDApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -82,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\phone\phone.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\phone\IDApp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -132,6 +138,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\shop_App.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\ID_Page_Phone.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

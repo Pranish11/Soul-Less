@@ -1,39 +1,30 @@
 #pragma once
-
 #include "SFML/Graphics.hpp"
+#include "IDApp.hpp"
 
 class phone {
 public:
-	phone();
-	void update(sf::RenderWindow& window);
-	void draw(sf::RenderWindow& window);
+    phone();
+    void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window);
+    bool isPhoneHidden = true;
+    bool IDApplicationOpen = false;
 
-
-	bool isPhoneHidden = true;
+    bool AppOpened = false;
+    sf::Texture phoneTexture;
 
 private:
-	
-	sf::Texture phoneTexture;
-	sf::Sprite phoneSprite;
+    sf::Sprite phoneSprite;
+    sf::Texture Bank_App_Texture;
+    sf::Texture Shop_App_Texture;
+    sf::Texture ID_App_Texture;
+    sf::Texture Illegal_App_Texture;
+    sf::Texture Business_App_Texture;
+    sf::RectangleShape Bank_App_Rect;
+    sf::RectangleShape Shop_App_Rect;
+    sf::RectangleShape ID_App_Rect;
+    sf::RectangleShape Illegal_App_Rect;
+    sf::RectangleShape Business_App_Rect;
 
-	sf::Texture Bank_App_Texture;
-	sf::Texture Shop_App_Texture;
-	sf::Texture ID_App_Texture;
-	sf::Texture Illegal_App_Texture;
-	sf::Texture Business_App_Texture;
-
-	sf::RectangleShape Bank_App_Rect;
-	sf::RectangleShape Shop_App_Rect;
-	sf::RectangleShape ID_App_Rect;
-	sf::RectangleShape Illegal_App_Rect;
-	sf::RectangleShape Business_App_Rect;
-
-	sf::FloatRect bankAppBounds;
-	sf::FloatRect shopAppBounds;
-	sf::FloatRect idAppBounds;
-	sf::FloatRect illegalAppBounds;
-	sf::FloatRect businessAppBounds;
-
-	sf::Vector2i mousePosPixel;
-	sf::Vector2f mousePosPhone;
+    ID idApp; 
 };

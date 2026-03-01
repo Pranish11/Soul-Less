@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\phone\IDApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src/Day_Night_Cycle/DayAndNight.cpp" />
     <ClCompile Include="src/Game.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="include/Menu/MenuState.hpp" />
     <ClInclude Include="include/Menu/Pause.hpp" />
     <ClInclude Include="include/player/Player.hpp" />
+    <ClInclude Include="include\phone\IDApp.hpp" />
     <ClInclude Include="include\phone\phone.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +179,7 @@
     <Image Include="assets\textures\Bank_App.png" />
     <Image Include="assets\textures\Business_App.png" />
     <Image Include="assets\textures\ID_App.png" />
+    <Image Include="assets\textures\ID_Page_Phone.png" />
     <Image Include="assets\textures\illegal_App.png" />
     <Image Include="assets\textures\Phone.png" />
     <Image Include="assets\textures\shop_App.png" />
