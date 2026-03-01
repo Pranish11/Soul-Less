@@ -5,7 +5,7 @@
 class phone {
 public:
 	phone();
-	void update();
+	void update(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 
 
@@ -28,4 +28,12 @@ private:
 	sf::RectangleShape Illegal_App_Rect;
 	sf::RectangleShape Business_App_Rect;
 
+	sf::FloatRect bankAppBounds;
+	sf::FloatRect shopAppBounds;
+	sf::FloatRect idAppBounds;
+	sf::FloatRect illegalAppBounds;
+	sf::FloatRect businessAppBounds;
+
+	sf::Vector2i mousePosPixel;
+	sf::Vector2f mousePosPhone;
 };

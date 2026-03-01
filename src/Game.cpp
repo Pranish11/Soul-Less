@@ -107,6 +107,7 @@ void Game::run()
             {
 				Human_Player_Phone.isPhoneHidden = false;       //for boxes to be visible during testing, will be removed later. if not needed remove this line
                 Human_Player_Phone.draw(window);
+				Human_Player_Phone.update(window);
             }
 
             // Draw inventory if open

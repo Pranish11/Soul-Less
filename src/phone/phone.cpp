@@ -1,5 +1,7 @@
 #include "../../include/phone/phone.hpp"
 #include "../../include/Game.hpp"
+
+
 #include <iostream>
 
 
@@ -61,13 +63,52 @@ phone::phone(): phoneSprite(phoneTexture){
 	ID_App_Rect.setTexture          (&ID_App_Texture);
 	Illegal_App_Rect.setTexture     (&Illegal_App_Texture);
 	Business_App_Rect.setTexture    (&Business_App_Texture);
+
+	sf::FloatRect bankAppBounds     = Bank_App_Rect.getGlobalBounds();
+	sf::FloatRect shopAppBounds     = Shop_App_Rect.getGlobalBounds();
+	sf::FloatRect idAppBounds       = ID_App_Rect.getGlobalBounds();
+	sf::FloatRect illegalAppBounds  = Illegal_App_Rect.getGlobalBounds();
+	sf::FloatRect businessAppBounds = Business_App_Rect.getGlobalBounds();
+
+
 }
-
-
-void phone::update()
+void phone::update(sf::RenderWindow& window)
 {
+    sf::Vector2i mousePosPixel = sf::Mouse::getPosition(window);
+    sf::Vector2f mousePosPhone = window.mapPixelToCoords(mousePosPixel);
 
+    if (Bank_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            std::cout << "Bank App Clicked\n";
+        }
+    }
+
+    if (Shop_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            std::cout << "Shop App Clicked\n";
+        }
+    }
+
+    if (ID_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            std::cout << "ID App Clicked\n";
+        }
+    }
+
+    if (Illegal_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            std::cout << "Illegal App Clicked\n";
+        }
+    }
+
+    if (Business_App_Rect.getGlobalBounds().contains(mousePosPhone)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            std::cout << "Business App Clicked\n";
+        }
+    }
 }
+
+
 
 void phone::draw(sf::RenderWindow& window)
 {
