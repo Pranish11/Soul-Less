@@ -103,8 +103,9 @@ void Game::run()
             }
 
             //Phone
-            if (isPhoneOpen)
+            if (isPhoneOpen && ispaused == false && inventoryOpen == false)
             {
+				Human_Player_Phone.isPhoneHidden = false;
                 Human_Player_Phone.draw(window);
             }
 
