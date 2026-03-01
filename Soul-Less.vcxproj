@@ -174,7 +174,12 @@
     <Image Include="assets/textures/Floor.png" />
     <Image Include="assets/textures/pm_time.png" />
     <Image Include="assets/textures/Wall.png" />
+    <Image Include="assets\textures\Bank_App.png" />
+    <Image Include="assets\textures\Business_App.png" />
+    <Image Include="assets\textures\ID_App.png" />
+    <Image Include="assets\textures\illegal_App.png" />
     <Image Include="assets\textures\Phone.png" />
+    <Image Include="assets\textures\shop_App.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

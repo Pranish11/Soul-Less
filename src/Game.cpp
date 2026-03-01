@@ -105,7 +105,7 @@ void Game::run()
             //Phone
             if (isPhoneOpen && ispaused == false && inventoryOpen == false)
             {
-				Human_Player_Phone.isPhoneHidden = false;
+				Human_Player_Phone.isPhoneHidden = false;       //for boxes to be visible during testing, will be removed later. if not needed remove this line
                 Human_Player_Phone.draw(window);
             }
 

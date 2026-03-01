@@ -3,34 +3,64 @@
 #include <iostream>
 
 
-phone::phone(): phoneSprite(phoneTexture) {
+phone::phone(): phoneSprite(phoneTexture){
 	if (!phoneTexture.loadFromFile("assets/textures/Phone.png"))
 	{
 		std::cerr << "Error: Failed to load Phone.png\n";
 	}
 	phoneSprite = sf::Sprite(phoneTexture);
 
+    if (!Bank_App_Texture.loadFromFile("assets/textures/Bank_App.png"))
+    {
+        std::cerr << "Error: Failed to load Bank_App.png\n";
+    }
 
-	phoneSprite.setPosition		({ 1500.f, 500.f });
-	phoneSprite.setScale		({ 4.f, 4.f });
+    if (!Shop_App_Texture.loadFromFile("assets/textures/shop_App.png"))
+    {
+        std::cerr << "Error: Failed to load shop_App.png\n";
+    }
 
-    Bank_App_Rect.setSize       ({ 300.f, 200.f });
-    Shop_App_Rect.setSize       ({ 300.f, 200.f });
-    ID_App_Rect.setSize         ({ 300.f, 200.f });
-    Illegal_App_Rect.setSize    ({ 300.f, 200.f });
-    Business_App_Rect.setSize   ({ 300.f, 200.f });
+    if (!Business_App_Texture.loadFromFile("assets/textures/Business_App.png"))
+    {
+        std::cerr << "Error: Failed to load Business_App.png\n";
+    }
 
-    Bank_App_Rect.setPosition       ({ 1600.f, 600.f });
-    Shop_App_Rect.setPosition       ({ 1700.f, 600.f });
-    ID_App_Rect.setPosition         ({ 1600.f, 700.f });
-    Illegal_App_Rect.setPosition    ({ 1700.f, 700.f });
+    if (!Illegal_App_Texture.loadFromFile("assets/textures/illegal_App.png"))
+    {
+        std::cerr << "Error: Failed to load illegal_App.png\n";
+    }
+
+    if (!ID_App_Texture.loadFromFile("assets/textures/ID_App.png"))
+    {
+        std::cerr << "Error: Failed to load ID_App.png\n";
+    }
+    
+	phoneSprite.setPosition		    ({ 1500.f, 500.f });
+	phoneSprite.setScale		    ({ 4.f, 4.f });
+
+    Bank_App_Rect.setSize           ({ 64.f, 64.f });
+    Shop_App_Rect.setSize           ({ 64.f, 64.f });
+    ID_App_Rect.setSize             ({ 64.f, 64.f });
+    Illegal_App_Rect.setSize        ({ 64.f, 64.f });
+    Business_App_Rect.setSize       ({ 64.f, 64.f });
+
+    Bank_App_Rect.setPosition       ({ 1650.f, 600.f });
+    Shop_App_Rect.setPosition       ({ 1750.f, 600.f });
+    ID_App_Rect.setPosition         ({ 1650.f, 700.f });
+    Illegal_App_Rect.setPosition    ({ 1750.f, 700.f });
     Business_App_Rect.setPosition   ({ 1650.f, 800.f });
 
-    Bank_App_Rect.setFillColor      ({ 255, 0, 0, 128 });     // visible red for testing
-    Shop_App_Rect.setFillColor      ({ 0, 255, 0, 128 });
-    ID_App_Rect.setFillColor        ({ 0, 0, 255, 128 });
-    Illegal_App_Rect.setFillColor   ({ 255, 255, 0, 128 });
-    Business_App_Rect.setFillColor  ({ 255, 0, 255, 128 });
+    //Bank_App_Rect.setFillColor      ({ 255, 0, 0, 128 });     // visible red for testing
+    //Shop_App_Rect.setFillColor      ({ 0, 255, 0, 128 });
+    //ID_App_Rect.setFillColor        ({ 0, 0, 255, 128 });
+    //Illegal_App_Rect.setFillColor   ({ 255, 255, 0, 128 });
+    //Business_App_Rect.setFillColor  ({ 255, 0, 255, 128 });
+
+	Bank_App_Rect.setTexture        (&Bank_App_Texture);
+	Shop_App_Rect.setTexture        (&Shop_App_Texture);
+	ID_App_Rect.setTexture          (&ID_App_Texture);
+	Illegal_App_Rect.setTexture     (&Illegal_App_Texture);
+	Business_App_Rect.setTexture    (&Business_App_Texture);
 }
 
 
@@ -42,9 +72,7 @@ void phone::update()
 void phone::draw(sf::RenderWindow& window)
 {
 		window.draw(phoneSprite);
-
-		//for testing purposes, will be replaced with actual app icons and functionality later
-        if (isPhoneHidden == false) {
+		if (isPhoneHidden == false) {
             window.draw(Bank_App_Rect);
             window.draw(Shop_App_Rect);
             window.draw(ID_App_Rect);

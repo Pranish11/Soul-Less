@@ -16,6 +16,11 @@ private:
 	sf::Texture phoneTexture;
 	sf::Sprite phoneSprite;
 
+	sf::Texture Bank_App_Texture;
+	sf::Texture Shop_App_Texture;
+	sf::Texture ID_App_Texture;
+	sf::Texture Illegal_App_Texture;
+	sf::Texture Business_App_Texture;
 
 	sf::RectangleShape Bank_App_Rect;
 	sf::RectangleShape Shop_App_Rect;
