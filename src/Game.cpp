@@ -7,7 +7,6 @@
 #include "../include/phone/phone.hpp"
 
 #include <iostream>
-#include <memory>
 #include <string>
 
 Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen), inventory(5, 5, 50.f, { 100.f, 100.f }) {
@@ -38,10 +37,8 @@ void Game::run()
     bool ispaused = false;
     bool isPhoneOpen = false;
 
-    auto TestChair = std::make_unique<Item>("TestChair", "assets/ItemTextures/TestImage.png");
-    inventory.registerItem(TestChair.get());
-
-
+    inventoryManager.registerDefaultItems(inventory);
+    inventoryManager.giveItem(inventory, "TestChair", 1);
 
     while (window.isOpen())
     {
@@ -110,7 +107,7 @@ void Game::run()
                 const std::string purchasedItem = Human_Player_Phone.consumePurchasedItem();
                 if (!purchasedItem.empty())
                 {
-                    inventory.addItem(purchasedItem, 1);
+                    inventoryManager.giveItem(inventory, purchasedItem, 1);
                 }
                 Human_Player_Phone.draw(window);
             }

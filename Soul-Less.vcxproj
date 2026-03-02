@@ -138,6 +138,7 @@
     <ClCompile Include="src/Day_Night_Cycle/DayAndNight.cpp" />
     <ClCompile Include="src/Game.cpp" />
     <ClCompile Include="src/inventory/Inventory.cpp" />
+    <ClCompile Include="src/inventory/InventoryManager.cpp" />
     <ClCompile Include="src/inventory/InventorySlot.cpp" />
     <ClCompile Include="src/items/Item.cpp" />
     <ClCompile Include="src/level/Tiles.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="include/Day_Night_Cycle/DayAndNight.hpp" />
     <ClInclude Include="include/Game.hpp" />
     <ClInclude Include="include/inventory/Inventory.hpp" />
+    <ClInclude Include="include/inventory/InventoryManager.hpp" />
     <ClInclude Include="include/inventory/InventorySlot.hpp" />
     <ClInclude Include="include/items/Item.hpp" />
     <ClInclude Include="include/level/Tiles.hpp" />
