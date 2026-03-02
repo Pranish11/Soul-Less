@@ -8,11 +8,13 @@
 
 #include <iostream>
 #include <memory>
+#include <string>
 
 Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscreen), inventory(5, 5, 50.f, { 100.f, 100.f }) {
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
         std::cerr << "FAILED to load font\n";
     }
+    inventory.centerInWindow(window.getSize());
     window.setFramerateLimit(144);
 }
 
@@ -36,10 +38,8 @@ void Game::run()
     bool ispaused = false;
     bool isPhoneOpen = false;
 
-    Inventory inventory(4, 5, 64.0f, sf::Vector2f(600.f, 300.f));
     auto TestChair = std::make_unique<Item>("TestChair", "assets/ItemTextures/TestImage.png");
     inventory.registerItem(TestChair.get());
-    inventory.addItem("TestChair", 1);
 
 
 
@@ -107,6 +107,11 @@ void Game::run()
             {
 				Human_Player_Phone.isPhoneHidden = false;       //for boxes to be visible during testing, will be removed later. if not needed remove this line
                 Human_Player_Phone.update(mouseWorld, window);
+                const std::string purchasedItem = Human_Player_Phone.consumePurchasedItem();
+                if (!purchasedItem.empty())
+                {
+                    inventory.addItem(purchasedItem, 1);
+                }
                 Human_Player_Phone.draw(window);
             }
 
@@ -114,6 +119,7 @@ void Game::run()
             if (!ispaused && inventoryOpen) {
                 inventory.draw(window);
                 inventory.update(mouseWorld);
+                selectedInventoryItem = inventory.getSelectedItemName();
             }
 
             //day and night

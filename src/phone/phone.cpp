@@ -3,6 +3,7 @@
 #include "../../include/phone/IDApp.hpp"
 
 #include <iostream>
+#include <utility>
 
 
 phone::phone(): phoneSprite(phoneTexture){
@@ -37,6 +38,7 @@ phone::phone(): phoneSprite(phoneTexture){
         std::cerr << "Error: Failed to load ID_App.png\n";
     }
     
+    //wanted to follow good coding habits
 	phoneSprite.setPosition		    ({ 1500.f, 500.f });
 	phoneSprite.setScale		    ({ 4.f, 4.f });
 
@@ -75,26 +77,31 @@ phone::phone(): phoneSprite(phoneTexture){
 
 void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
 {
+    const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
+
     if (IDApplicationOpen)
     {
         idApp.update(mouseWorld, *this);
+        wasLeftMouseDown = leftMouseDown;
         return; // block icon clicks while app is open
     }
 
     if (Bank_App_Rect.getGlobalBounds().contains(mouseWorld)) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (isFreshLeftClick) {
             std::cout << "Bank App Clicked\n";
         }
     }
 
     if (Shop_App_Rect.getGlobalBounds().contains(mouseWorld)) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (isFreshLeftClick) {
             std::cout << "Shop App Clicked\n";
+            pendingPurchasedItem = "TestChair";
         }
     }
 
     if (ID_App_Rect.getGlobalBounds().contains(mouseWorld)) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (isFreshLeftClick) {
             std::cout << "ID App Clicked\n";
             idApp.is_ID_App_Open = true;
             IDApplicationOpen = true;
@@ -102,16 +109,18 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
     }
 
     if (Illegal_App_Rect.getGlobalBounds().contains(mouseWorld)) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (isFreshLeftClick) {
             std::cout << "Illegal App Clicked\n";
         }
     }
 
     if (Business_App_Rect.getGlobalBounds().contains(mouseWorld)) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (isFreshLeftClick) {
             std::cout << "Business App Clicked\n";
         }
     }
+
+    wasLeftMouseDown = leftMouseDown;
 }
 
 void phone::draw(sf::RenderWindow& window)
@@ -131,4 +140,11 @@ void phone::draw(sf::RenderWindow& window)
     {
         idApp.draw(window);
     }
+}
+
+std::string phone::consumePurchasedItem()
+{
+    std::string purchasedItem = std::move(pendingPurchasedItem);
+    pendingPurchasedItem.clear();
+    return purchasedItem;
 }

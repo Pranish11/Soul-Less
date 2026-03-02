@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <string>
 #include "inventory/Inventory.hpp"
 
 class Game {
@@ -15,4 +16,5 @@ private:
     Inventory inventory;
     bool inventoryOpen = false;
     sf::Vector2f mouseWorld;
+    std::string selectedInventoryItem;
 };

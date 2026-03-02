@@ -1,12 +1,14 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "IDApp.hpp"
+#include <string>
 
 class phone {
 public:
     phone();
     void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    std::string consumePurchasedItem();
     bool isPhoneHidden = true;
     bool IDApplicationOpen = false;
 
@@ -27,4 +29,6 @@ private:
     sf::RectangleShape Business_App_Rect;
 
     ID idApp; 
+    std::string pendingPurchasedItem;
+    bool wasLeftMouseDown = false;
 };

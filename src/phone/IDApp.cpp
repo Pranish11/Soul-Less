@@ -43,6 +43,6 @@ void ID::draw(sf::RenderWindow& window)
     if (is_ID_App_Open)
     {
         window.draw(ID_Sprite);
-        window.draw(ID_App_Close);
+        //window.draw(ID_App_Close);    //for testing
     }
 }
