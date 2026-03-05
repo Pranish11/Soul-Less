@@ -1,6 +1,5 @@
 #include "../../include/phone/phone.hpp"
 #include "../../include/Game.hpp"
-#include "../../include/phone/IDApp.hpp"
 
 #include <iostream>
 #include <utility>
@@ -87,6 +86,13 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
         return; // block icon clicks while app is open
     }
 
+    if (Shop_App_Open)
+    {
+        ShopApp.update(mouseWorld, *this);
+        wasLeftMouseDown = leftMouseDown;
+        return;
+    }
+
     if (Bank_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (isFreshLeftClick) {
             std::cout << "Bank App Clicked\n";
@@ -96,7 +102,8 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
     if (Shop_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (isFreshLeftClick) {
             std::cout << "Shop App Clicked\n";
-            pendingPurchasedItem = "TestChair";
+            ShopApp.isShopAppOpen = true;
+            Shop_App_Open = true;
         }
     }
 
@@ -105,6 +112,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
             std::cout << "ID App Clicked\n";
             idApp.is_ID_App_Open = true;
             IDApplicationOpen = true;
+            Shop_App_Open = false;
         }
     }
 
@@ -140,11 +148,9 @@ void phone::draw(sf::RenderWindow& window)
     {
         idApp.draw(window);
     }
-}
 
-std::string phone::consumePurchasedItem()
-{
-    std::string purchasedItem = std::move(pendingPurchasedItem);
-    pendingPurchasedItem.clear();
-    return purchasedItem;
+    if (Shop_App_Open)
+    {
+        ShopApp.draw(window);
+    }
 }

@@ -54,6 +54,9 @@
     <ClCompile Include="src\phone\IDApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\phone\Shopiee_App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -94,6 +97,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\phone\IDApp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\phone\Shopiee_App.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -147,6 +153,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\ID_Page_Phone.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Buy_Sign.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Shoppiee_App.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

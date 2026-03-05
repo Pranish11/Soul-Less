@@ -8,11 +8,6 @@ ID::ID() : ID_Sprite(ID_Texture)
     {
         std::cerr << "Error: Failed to load ID_Page_Phone.png\n";
     }
-    else
-    {
-        std::cerr << "Success: ID_Page_Phone.png loaded, size: "
-            << ID_Texture.getSize().x << "x" << ID_Texture.getSize().y << "\n";
-    }
 
     ID_Sprite.setTexture(ID_Texture, true);
     ID_Sprite.setPosition({ 1500.f, 500.f }); // same as phone to cover it
@@ -30,8 +25,8 @@ void ID::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
         {
             is_ID_App_Open = false;
-            phoneInstance.IDApplicationOpen = false; // close the app
-            phoneInstance.isPhoneHidden = false;     // show phone icons again
+            phoneInstance.IDApplicationOpen = false; // close the  ID app
+            phoneInstance.isPhoneHidden = false;     // show the phone icons again
         }
     }
 }
