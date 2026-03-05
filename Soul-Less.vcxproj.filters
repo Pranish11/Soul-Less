@@ -161,5 +161,8 @@
     <Image Include="assets\textures\Shoppiee_App.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\textures\Weed_Plant_Inventory.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

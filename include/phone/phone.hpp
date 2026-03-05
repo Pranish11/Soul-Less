@@ -4,11 +4,14 @@
 #include "Shopiee_App.hpp"
 #include <string>
 
+class Inventory;
+class InventoryManager;
+
 class phone {
 public:
     phone();
-    void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window);
-    void draw(sf::RenderWindow& window);
+    void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inventory& inventory, InventoryManager& inventoryManager);
+    void draw(sf::RenderWindow& window, const sf::Font& font);
     bool isPhoneHidden = true;
     bool IDApplicationOpen = false;
     bool Shop_App_Open = false;

@@ -189,6 +189,7 @@
     <Image Include="assets\textures\Phone.png" />
     <Image Include="assets\textures\Shoppiee_App.png" />
     <Image Include="assets\textures\shop_App.png" />
+    <Image Include="assets\textures\Weed_Plant_Inventory.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

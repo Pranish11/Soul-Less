@@ -1,5 +1,7 @@
 #include "../../include/phone/phone.hpp"
 #include "../../include/Game.hpp"
+#include "../../include/inventory/Inventory.hpp"
+#include "../../include/inventory/InventoryManager.hpp"
 
 #include <iostream>
 #include <utility>
@@ -74,7 +76,7 @@ phone::phone(): phoneSprite(phoneTexture){
     bool AppOpened = false;
 }
 
-void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
+void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inventory& inventory, InventoryManager& inventoryManager)
 {
     const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
     const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
@@ -88,7 +90,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
 
     if (Shop_App_Open)
     {
-        ShopApp.update(mouseWorld, *this);
+        ShopApp.update(mouseWorld, *this, inventory, inventoryManager);
         wasLeftMouseDown = leftMouseDown;
         return;
     }
@@ -131,7 +133,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window)
     wasLeftMouseDown = leftMouseDown;
 }
 
-void phone::draw(sf::RenderWindow& window)
+void phone::draw(sf::RenderWindow& window, const sf::Font& font)
 {
     window.draw(phoneSprite);
 
@@ -151,6 +153,6 @@ void phone::draw(sf::RenderWindow& window)
 
     if (Shop_App_Open)
     {
-        ShopApp.draw(window);
+        ShopApp.draw(window, font);
     }
 }
