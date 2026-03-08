@@ -180,6 +180,11 @@
     <Image Include="assets/textures/Floor.png" />
     <Image Include="assets/textures/pm_time.png" />
     <Image Include="assets/textures/Wall.png" />
+    <Image Include="assets\ItemTextures\Bed.png" />
+    <Image Include="assets\ItemTextures\Better_weed.png" />
+    <Image Include="assets\ItemTextures\chemical_table.png" />
+    <Image Include="assets\ItemTextures\coke_table.png" />
+    <Image Include="assets\ItemTextures\Table.png" />
     <Image Include="assets\textures\Bank_App.png" />
     <Image Include="assets\textures\Business_App.png" />
     <Image Include="assets\textures\Buy_Sign.png" />

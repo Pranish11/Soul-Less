@@ -164,5 +164,20 @@
     <Image Include="assets\textures\Weed_Plant_Inventory.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\ItemTextures\Bed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\ItemTextures\Table.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\ItemTextures\coke_table.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\ItemTextures\chemical_table.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\ItemTextures\Better_weed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
