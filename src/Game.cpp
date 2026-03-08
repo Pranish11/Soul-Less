@@ -103,13 +103,8 @@ void Game::run()
             if (isPhoneOpen && ispaused == false && inventoryOpen == false)
             {
 				Human_Player_Phone.isPhoneHidden = false;       //for boxes to be visible during testing, will be removed later. if not needed remove this line
-                Human_Player_Phone.update(mouseWorld, window);
-                const std::string purchasedItem = Human_Player_Phone.consumePurchasedItem();
-                if (!purchasedItem.empty())
-                {
-                    inventoryManager.giveItem(inventory, purchasedItem, 1);
-                }
-                Human_Player_Phone.draw(window);
+                Human_Player_Phone.update(mouseWorld, window, inventory, inventoryManager);
+                Human_Player_Phone.draw(window, Pixelfont);
             }
 
             // Draw inventory if open
@@ -123,8 +118,6 @@ void Game::run()
             timecycle.update();
             timecycle.draw(window);
         }
-
-
         window.setMouseCursorVisible(true);
         mouseWorld = window.mapPixelToCoords(sf::Mouse::getPosition(window));
         window.display();

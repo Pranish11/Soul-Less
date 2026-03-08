@@ -1,16 +1,20 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "IDApp.hpp"
+#include "Shopiee_App.hpp"
 #include <string>
+
+class Inventory;
+class InventoryManager;
 
 class phone {
 public:
     phone();
-    void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window);
-    void draw(sf::RenderWindow& window);
-    std::string consumePurchasedItem();
+    void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inventory& inventory, InventoryManager& inventoryManager);
+    void draw(sf::RenderWindow& window, const sf::Font& font);
     bool isPhoneHidden = true;
     bool IDApplicationOpen = false;
+    bool Shop_App_Open = false;
 
     bool AppOpened = false;
     sf::Texture phoneTexture;
@@ -29,6 +33,6 @@ private:
     sf::RectangleShape Business_App_Rect;
 
     ID idApp; 
-    std::string pendingPurchasedItem;
+    Shop ShopApp;
     bool wasLeftMouseDown = false;
 };

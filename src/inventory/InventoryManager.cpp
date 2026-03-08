@@ -21,6 +21,12 @@ bool InventoryManager::registerItem(Inventory& inventory, const std::string& ite
 void InventoryManager::registerDefaultItems(Inventory& inventory)
 {
     registerItem(inventory, "TestChair", "assets/ItemTextures/TestImage.png");
+    registerItem(inventory, "Bed", "assets/ItemTextures/Bed.png");
+    registerItem(inventory, "Table", "assets/ItemTextures/Table.png");
+    registerItem(inventory, "Coke", "assets/ItemTextures/coke_table.png");
+    registerItem(inventory, "Chemical", "assets/ItemTextures/chemical_table.png");
+    registerItem(inventory, "B_Weed","assets/ItemTextures/Better_Weed.png");
+
 }
 
 bool InventoryManager::giveItem(Inventory& inventory, const std::string& itemName, int qty) const

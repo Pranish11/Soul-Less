@@ -146,6 +146,7 @@
     <ClCompile Include="src/Menu/Pause.cpp" />
     <ClCompile Include="src/player/Player.cpp" />
     <ClCompile Include="src\phone\phone.cpp" />
+    <ClCompile Include="src\phone\Shopiee_App.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -164,6 +165,7 @@
     <ClInclude Include="include/player/Player.hpp" />
     <ClInclude Include="include\phone\IDApp.hpp" />
     <ClInclude Include="include\phone\phone.hpp" />
+    <ClInclude Include="include\phone\Shopiee_App.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets/fonts/Silkscreen-Regular.ttf" />
@@ -178,13 +180,21 @@
     <Image Include="assets/textures/Floor.png" />
     <Image Include="assets/textures/pm_time.png" />
     <Image Include="assets/textures/Wall.png" />
+    <Image Include="assets\ItemTextures\Bed.png" />
+    <Image Include="assets\ItemTextures\Better_weed.png" />
+    <Image Include="assets\ItemTextures\chemical_table.png" />
+    <Image Include="assets\ItemTextures\coke_table.png" />
+    <Image Include="assets\ItemTextures\Table.png" />
     <Image Include="assets\textures\Bank_App.png" />
     <Image Include="assets\textures\Business_App.png" />
+    <Image Include="assets\textures\Buy_Sign.png" />
     <Image Include="assets\textures\ID_App.png" />
     <Image Include="assets\textures\ID_Page_Phone.png" />
     <Image Include="assets\textures\illegal_App.png" />
     <Image Include="assets\textures\Phone.png" />
+    <Image Include="assets\textures\Shoppiee_App.png" />
     <Image Include="assets\textures\shop_App.png" />
+    <Image Include="assets\textures\Weed_Plant_Inventory.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
