@@ -80,3 +80,10 @@ int Tiles::getTileAt(int row, int col) const
     }
     return 1; // Return wall if out of bounds
 }
+
+void Tiles::setTileAt(int row, int col, int value)
+{
+    if (row >= 0 && row < Rows && col >= 0 && col < Cols) {
+        level[row][col] = value;
+    }
+}

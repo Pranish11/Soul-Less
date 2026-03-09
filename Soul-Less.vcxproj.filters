@@ -57,6 +57,9 @@
     <ClCompile Include="src\phone\Shopiee_App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\items\Place.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -100,6 +103,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\phone\Shopiee_App.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\items\Place.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -177,6 +183,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\ItemTextures\Better_weed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Broom.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

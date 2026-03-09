@@ -18,7 +18,7 @@ DayAndNight::DayAndNight(): daylenght(60.f),progress(0.f),alpha(0),daySprite(day
 	daySprite = sf::Sprite(dayTexture);
 	nightSprite = sf::Sprite(nightTexture);
 
-	float cycleScale = 2.5f;
+	float cycleScale = 2.5f;  // Scale for the sprite
 
 	daySprite.setScale({cycleScale,cycleScale});
 	nightSprite.setScale({ cycleScale,cycleScale});
@@ -32,7 +32,7 @@ void DayAndNight::update() {
 	progress = time / daylenght; 
 
 	// sine wave for darkness
-	float darkness = (std::sin(progress * 2.f * 3.14159265f - 1.5707963f) + 1.f) / 2.f;
+	float darkness = (std::sin(progress * 2.f * 3.141f - 1.57f) + 1.f) / 2.f;
 	darkness = std::clamp(darkness, 0.f, 1.f);
 
 	alpha = static_cast<std::uint8_t>(darkness * 180.f + 0.5f);

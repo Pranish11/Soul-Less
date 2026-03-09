@@ -26,6 +26,7 @@ void InventoryManager::registerDefaultItems(Inventory& inventory)
     registerItem(inventory, "Coke", "assets/ItemTextures/coke_table.png");
     registerItem(inventory, "Chemical", "assets/ItemTextures/chemical_table.png");
     registerItem(inventory, "B_Weed","assets/ItemTextures/Better_Weed.png");
+    registerItem(inventory, "Broom", "assets/textures/Broom.png");
 
 }
 

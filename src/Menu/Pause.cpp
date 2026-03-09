@@ -5,13 +5,12 @@
 Pause::Pause(const sf::Font& f) : Pixelfont(f) {
 }
 
-void Pause::PauseDraw(sf::RenderWindow& window)
+PauseAction Pause::PauseDraw(sf::RenderWindow& window)
 {
-	sf::RectangleShape Continue;
-	sf::RectangleShape Save;
-	sf::RectangleShape Exit;
-	bool isPaused = true;
 	sf::Vector2i MousePos = sf::Mouse::getPosition(window);
+    const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
+    PauseAction action = PauseAction::None;
 
 	Continue.setSize({ 200.f, 50.f });
 	Continue.setFillColor(sf::Color(0, 255, 0, 128));
@@ -52,25 +51,19 @@ void Pause::PauseDraw(sf::RenderWindow& window)
 	window.draw(SaveText);
 	window.draw(ExitText);
 
-	if (ContinueGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }))
+	if (ContinueGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }) && isFreshLeftClick)
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-		{
-			return;
-		}
+		action = PauseAction::ContinueGame;
 	}
-	if (SaveGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }))
+	if (SaveGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }) && isFreshLeftClick)
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-		{
-			return;
-		}
+		// save not implemented yet
 	}
-	if (ExitGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }))
+	if (ExitGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }) && isFreshLeftClick)
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-		{
-			window.close();
-		}
+		action = PauseAction::ExitToMainMenu;
 	}
+
+    wasLeftMouseDown = leftMouseDown;
+    return action;
 }
