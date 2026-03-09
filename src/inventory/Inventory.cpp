@@ -41,6 +41,30 @@ bool Inventory::addItem(const std::string& itemName, int qty) {
     return false;
 }
 
+bool Inventory::removeSelectedItem(int qty)
+{
+    if (qty <= 0) {
+        return false;
+    }
+
+    if (selectedSlotIndex < 0 || selectedSlotIndex >= static_cast<int>(slots.size())) {
+        return false;
+    }
+
+    InventorySlot& selectedSlot = slots[selectedSlotIndex];
+    if (selectedSlot.isEmpty() || selectedSlot.quantity < qty) {
+        return false;
+    }
+
+    selectedSlot.quantity -= qty;
+    if (selectedSlot.quantity <= 0) {
+        selectedSlot.itemName.clear();
+        selectedSlot.quantity = 0;
+    }
+
+    return true;
+}
+
 std::string Inventory::getSelectedItemName() const
 {
     if (selectedSlotIndex < 0 || selectedSlotIndex >= static_cast<int>(slots.size())) {
@@ -49,6 +73,16 @@ std::string Inventory::getSelectedItemName() const
 
     const InventorySlot& selectedSlot = slots[selectedSlotIndex];
     return selectedSlot.isEmpty() ? "" : selectedSlot.itemName;
+}
+
+const Item* Inventory::getItemData(const std::string& itemName) const
+{
+    auto it = itemDatabase.find(itemName);
+    if (it == itemDatabase.end()) {
+        return nullptr;
+    }
+
+    return it->second;
 }
 
 void Inventory::setStartPosition(const sf::Vector2f& newStartPos)

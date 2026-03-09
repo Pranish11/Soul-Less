@@ -2,10 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 
+enum class PauseAction {
+    None,
+    ContinueGame,
+    ExitToMainMenu
+};
+
 class Pause {
 public:
     Pause(const sf::Font& f);
-    void PauseDraw(sf::RenderWindow& window);
+    PauseAction PauseDraw(sf::RenderWindow& window);
     bool isPaused = false;
 
 private:
@@ -13,4 +19,5 @@ private:
     sf::RectangleShape Continue;
     sf::RectangleShape Save;
     sf::RectangleShape Exit;
+    bool wasLeftMouseDown = false;
 };

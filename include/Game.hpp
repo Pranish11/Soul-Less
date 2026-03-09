@@ -4,6 +4,7 @@
 #include <string>
 #include "inventory/Inventory.hpp"
 #include "inventory/InventoryManager.hpp"
+#include "items/Place.hpp"
 
 class Game {
 public:
@@ -16,6 +17,7 @@ private:
     sf::Font Pixelfont;
     Inventory inventory;
     InventoryManager inventoryManager;
+    place itemPlacer;
     bool inventoryOpen = false;
     sf::Vector2f mouseWorld;
     std::string selectedInventoryItem;

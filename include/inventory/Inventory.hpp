@@ -23,7 +23,9 @@ public:
 
     void registerItem(Item* item);
     bool addItem(const std::string& itemName, int qty = 1);
+    bool removeSelectedItem(int qty = 1);
     std::string getSelectedItemName() const;
+    const Item* getItemData(const std::string& itemName) const;
 
     void setStartPosition(const sf::Vector2f& newStartPos);
     void centerInWindow(const sf::Vector2u& windowSize);

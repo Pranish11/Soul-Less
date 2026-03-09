@@ -39,11 +39,13 @@ void Game::run()
 
     inventoryManager.registerDefaultItems(inventory);
     inventoryManager.giveItem(inventory, "TestChair", 1);
+    inventoryManager.giveItem(inventory, "Broom", 1);
 
     while (window.isOpen())
     {
         sf::Time dt = deltaClock.restart();
         float deltaTime = dt.asSeconds();
+        mouseWorld = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 
         while (auto event = window.pollEvent())
         {
@@ -90,12 +92,23 @@ void Game::run()
             if (!ispaused) {
                 HumanPlayer.update(deltaTime, gametile);
                 gametile.draw(window);
+                itemPlacer.draw(window);
                 HumanPlayer.draw(window);
             }
             else {
                 gametile.draw(window);
+                itemPlacer.draw(window);
                 HumanPlayer.draw(window);
-                pausemenu.PauseDraw(window);
+                const PauseAction pauseAction = pausemenu.PauseDraw(window);
+                if (pauseAction == PauseAction::ContinueGame) {
+                    ispaused = false;
+                }
+                else if (pauseAction == PauseAction::ExitToMainMenu) {
+                    ispaused = false;
+                    isPhoneOpen = false;
+                    inventoryOpen = false;
+                    isinmenu = true;
+                }
 				inventoryOpen = false;
             }
 
@@ -114,12 +127,13 @@ void Game::run()
                 selectedInventoryItem = inventory.getSelectedItemName();
             }
 
+            itemPlacer.update(mouseWorld, inventory, gametile, !isinmenu && !ispaused && !isPhoneOpen && !inventoryOpen);
+
             //day and night
             timecycle.update();
             timecycle.draw(window);
         }
         window.setMouseCursorVisible(true);
-        mouseWorld = window.mapPixelToCoords(sf::Mouse::getPosition(window));
         window.display();
     }
 }

@@ -84,9 +84,9 @@ void Player::update(float deltaTime, const Tiles& tilemap)
 
 bool Player::canMoveTo(sf::Vector2f newPosition, const Tiles& tilemap)
 {
-    int tileSize = 64;
-	int tileX = static_cast<int>(newPosition.x) / tileSize;
-	int tileY = static_cast<int>(newPosition.y) / tileSize;
+	const float tileSize = Tiles::TILE_SIZE;
+	int tileX = static_cast<int>(newPosition.x / tileSize);
+	int tileY = static_cast<int>(newPosition.y / tileSize);
     return tilemap.getTileAt(tileY, tileX) == 0;
 }
 

@@ -7,6 +7,7 @@ public:
     Tiles();
     void draw(sf::RenderWindow& window);
     int getTileAt(int row, int col) const;
+    void setTileAt(int row, int col, int value);
     static constexpr float TILE_SIZE = 64.f;
     static constexpr int Rows = 17;
     static constexpr int Cols = 30;
