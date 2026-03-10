@@ -38,8 +38,9 @@ void Game::run()
     bool isPhoneOpen = false;
 
     inventoryManager.registerDefaultItems(inventory);
-    inventoryManager.giveItem(inventory, "TestChair", 1);
+    //Broom to remove place items
     inventoryManager.giveItem(inventory, "Broom", 1);
+
 
     while (window.isOpen())
     {

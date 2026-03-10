@@ -33,8 +33,6 @@ void ID::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 
 void ID::draw(sf::RenderWindow& window)
 {
-    std::cerr << "Drawing ID sprite at: " << ID_Sprite.getPosition().x << ", " << ID_Sprite.getPosition().y << "\n";
-    std::cerr << "Texture size: " << ID_Texture.getSize().x << "x" << ID_Texture.getSize().y << "\n";
     if (is_ID_App_Open)
     {
         window.draw(ID_Sprite);

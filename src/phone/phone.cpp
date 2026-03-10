@@ -3,6 +3,7 @@
 #include "../../include/inventory/Inventory.hpp"
 #include "../../include/inventory/InventoryManager.hpp"
 
+
 #include <iostream>
 #include <utility>
 
@@ -95,9 +96,18 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
         return;
     }
 
+    if (Bank_App_Open)
+    {
+        BankApp.update(mouseWorld, *this);
+        wasLeftMouseDown = leftMouseDown;
+        return;
+    }
+
     if (Bank_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (isFreshLeftClick) {
             std::cout << "Bank App Clicked\n";
+            BankApp.is_Bank_App_Open = true;
+            Bank_App_Open = true;
         }
     }
 
@@ -114,7 +124,6 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
             std::cout << "ID App Clicked\n";
             idApp.is_ID_App_Open = true;
             IDApplicationOpen = true;
-            Shop_App_Open = false;
         }
     }
 
@@ -137,7 +146,7 @@ void phone::draw(sf::RenderWindow& window, const sf::Font& font)
 {
     window.draw(phoneSprite);
 
-    if (!isPhoneHidden && !IDApplicationOpen)
+    if (!isPhoneHidden)
     {
         window.draw(Bank_App_Rect);
         window.draw(Shop_App_Rect);
@@ -154,5 +163,9 @@ void phone::draw(sf::RenderWindow& window, const sf::Font& font)
     if (Shop_App_Open)
     {
         ShopApp.draw(window, font);
+    }
+    if (Bank_App_Open)
+    {
+        BankApp.draw(window);
     }
 }

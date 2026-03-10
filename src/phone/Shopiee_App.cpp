@@ -316,7 +316,7 @@ void Shop::draw(sf::RenderWindow& window, const sf::Font& font)
 		window.draw(item.buySign);
 	}
 
-	//window.draw(Shop_Close);					// close button rectangle 
+	window.draw(Shop_Close);					// close button rectangle 
 
 	if (showInventoryFullText)
 	{

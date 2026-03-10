@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\items\Place.cpp" />
+    <ClCompile Include="src\phone\Bank_App.cpp" />
     <ClCompile Include="src\phone\IDApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src/Day_Night_Cycle/DayAndNight.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="include/Menu/Pause.hpp" />
     <ClInclude Include="include/player/Player.hpp" />
     <ClInclude Include="include\items\Place.hpp" />
+    <ClInclude Include="include\phone\Bank_App.hpp" />
     <ClInclude Include="include\phone\IDApp.hpp" />
     <ClInclude Include="include\phone\phone.hpp" />
     <ClInclude Include="include\phone\Shopiee_App.hpp" />
@@ -188,6 +190,7 @@
     <Image Include="assets\ItemTextures\coke_table.png" />
     <Image Include="assets\ItemTextures\Table.png" />
     <Image Include="assets\textures\Bank_App.png" />
+    <Image Include="assets\textures\bank_App_page.png" />
     <Image Include="assets\textures\Broom.png" />
     <Image Include="assets\textures\Business_App.png" />
     <Image Include="assets\textures\Buy_Sign.png" />
