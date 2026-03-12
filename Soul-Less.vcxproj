@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\items\Place.cpp" />
+    <ClCompile Include="src\Money\Money.cpp" />
     <ClCompile Include="src\phone\Bank_App.cpp" />
     <ClCompile Include="src\phone\IDApp.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="include/Menu/Pause.hpp" />
     <ClInclude Include="include/player/Player.hpp" />
     <ClInclude Include="include\items\Place.hpp" />
+    <ClInclude Include="include\Money\Money.hpp" />
     <ClInclude Include="include\phone\Bank_App.hpp" />
     <ClInclude Include="include\phone\IDApp.hpp" />
     <ClInclude Include="include\phone\phone.hpp" />

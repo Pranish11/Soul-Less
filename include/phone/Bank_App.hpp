@@ -22,6 +22,8 @@ private:
 	sf::RectangleShape dollar_displaying_retangle;
 	sf::RectangleShape Close_Bank_App;
 
-	
+	sf::RectangleShape Withdraw_Rect;
+	sf::RectangleShape Deposite_Rect;
+	sf::RectangleShape Donate_Rect;
 
 };

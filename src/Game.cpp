@@ -5,6 +5,7 @@
 #include "../include/player/Player.hpp"
 #include "../include/Day_Night_Cycle/DayAndNight.hpp"
 #include "../include/phone/phone.hpp"
+#include "../include/Money/Money.hpp"
 
 #include <iostream>
 #include <string>
@@ -32,6 +33,7 @@ void Game::run()
     Player HumanPlayer;
     DayAndNight timecycle;
 	phone Human_Player_Phone;
+    money Money_display(Pixelfont);
 
     bool isinmenu = true;
     bool ispaused = false;
@@ -67,6 +69,7 @@ void Game::run()
                         inventoryOpen = !inventoryOpen;
                     }
                 }
+                // Handle P key for Phone toggle
                 if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
                 {
                     if (keyPressed->code == sf::Keyboard::Key::P)
@@ -110,7 +113,8 @@ void Game::run()
                     inventoryOpen = false;
                     isinmenu = true;
                 }
-				inventoryOpen = false;
+                inventoryOpen = false;
+                Money_display.cashDraw(window);
             }
 
             //Phone
@@ -133,6 +137,12 @@ void Game::run()
             //day and night
             timecycle.update();
             timecycle.draw(window);
+
+            // Money display will be hidden in menu/paused/inventory/phone
+            if (!ispaused && !isPhoneOpen && !inventoryOpen) {
+                Money_display.update();
+                Money_display.cashDraw(window);
+            }
         }
         window.setMouseCursorVisible(true);
         window.display();
