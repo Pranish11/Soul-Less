@@ -4,7 +4,7 @@
 #include "../../include/Day_Night_Cycle/DayAndNight.hpp"
 #include "../../include/Game.hpp"
 
-DayAndNight::DayAndNight(): daylenght(360.f),progress(0.f),alpha(0),daySprite(dayTexture),nightSprite(nightTexture)
+DayAndNight::DayAndNight(): daylenght(600.f),progress(0.f),alpha(0),daySprite(dayTexture),nightSprite(nightTexture)
 {
 	if (!dayTexture.loadFromFile("assets/textures/Am_time.png"))
 	{

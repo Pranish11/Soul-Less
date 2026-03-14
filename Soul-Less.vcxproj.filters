@@ -66,6 +66,9 @@
     <ClCompile Include="src\Money\Money.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\phone\Business_App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -118,6 +121,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Money\Money.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\phone\Business_App.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -201,6 +207,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\bank_App_page.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Business_Web.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Business_one.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Business_two.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Buy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Owned.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

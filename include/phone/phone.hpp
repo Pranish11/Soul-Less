@@ -3,6 +3,7 @@
 #include "IDApp.hpp"
 #include "Shopiee_App.hpp"
 #include "Bank_App.hpp"
+#include "Business_App.hpp"
 #include <string>
 
 class Inventory;
@@ -18,11 +19,13 @@ public:
     bool IDApplicationOpen = false;
     bool Shop_App_Open = false;
     bool Bank_App_Open = false;
+    bool Business_App_Open = false;
 
     bool AppOpened = false;
     sf::Texture phoneTexture;
 
 private:
+    //made this look a little bit cleaner
     sf::Sprite              phoneSprite;
     sf::Texture             Bank_App_Texture;
     sf::Texture             Shop_App_Texture;
@@ -38,6 +41,7 @@ private:
     ID                      idApp; 
     Shop                    ShopApp;
     bank                    BankApp;
+    BusinessApp             Business;
 
     bool wasLeftMouseDown = false;
 };

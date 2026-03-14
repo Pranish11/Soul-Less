@@ -133,6 +133,9 @@ void Game::run()
             }
 
             itemPlacer.update(mouseWorld, inventory, gametile, !isinmenu && !ispaused && !isPhoneOpen && !inventoryOpen);
+            if (!ispaused) {
+                itemPlacer.generateCash(Money_display, deltaTime);
+            }
 
             //day and night
             timecycle.update();

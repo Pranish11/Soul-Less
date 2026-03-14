@@ -2,7 +2,9 @@
 #include "../../include/inventory/Inventory.hpp"
 #include "../../include/items/Item.hpp"
 #include "../../include/level/Tiles.hpp"
+#include "../../include/Money/Money.hpp"
 #include <utility>
+#include <cmath>
 
 place::place()
 {
@@ -56,6 +58,42 @@ void place::update(const sf::Vector2f& mouseWorld, Inventory& inventory, Tiles& 
 	}
 
 	wasLeftMouseDown = leftMouseDown;
+}
+
+void place::generateCash(money& moneyInstance, float deltaTime)
+{
+	if (placedItems.empty() || deltaTime <= 0.f) {
+		return;
+	}
+
+	int cokeCount = 0;
+	int weedCount = 0;
+	int chemicalCount = 0;
+
+	for (const PlacedItem& placedItem : placedItems) {
+		if (placedItem.itemName == "Coke") {
+			++cokeCount;
+		}
+		else if (placedItem.itemName == "B_Weed") {
+			++weedCount;
+		}
+		else if (placedItem.itemName == "Chemical") {
+			++chemicalCount;
+		}
+	}
+
+	const int incomePerSecond = (cokeCount * 1000) + (weedCount * 200) + (chemicalCount * 2500);
+	if (incomePerSecond <= 0) {
+		return;
+	}
+
+	const float earned = (static_cast<float>(incomePerSecond) * deltaTime) + cashRemainder;
+	const int wholeDollars = static_cast<int>(std::floor(earned));
+	cashRemainder = earned - static_cast<float>(wholeDollars);
+
+	if (wholeDollars > 0) {
+		moneyInstance.cash += wholeDollars;
+	}
 }
 
 void place::draw(sf::RenderWindow& window)

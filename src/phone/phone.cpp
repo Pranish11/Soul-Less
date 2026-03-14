@@ -98,10 +98,17 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
 
     if (Bank_App_Open)
     {
-        BankApp.update(mouseWorld, *this);
+        BankApp.update(mouseWorld, *this, moneyInstance);
         wasLeftMouseDown = leftMouseDown;
         return;
     }
+    if (Business_App_Open)
+    {
+        Business.update(mouseWorld, *this);
+        wasLeftMouseDown = leftMouseDown;
+        return; // block icon clicks while app is open
+    }
+
 
     if (Bank_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (isFreshLeftClick) {
@@ -136,6 +143,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
     if (Business_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (isFreshLeftClick) {
             std::cout << "Business App Clicked\n";
+            Business_App_Open = true;
         }
     }
 
@@ -166,6 +174,11 @@ void phone::draw(sf::RenderWindow& window, const sf::Font& font)
     }
     if (Bank_App_Open)
     {
-        BankApp.draw(window);
+        BankApp.draw(window, font);
+    }
+    
+    if (Business_App_Open)
+    {
+        Business.draw(window);
     }
 }

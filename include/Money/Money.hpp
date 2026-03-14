@@ -8,7 +8,7 @@ public:
 	void update();
 	void draw(sf::RenderWindow& window);
 	void cashDraw(sf::RenderWindow& window);
-	int cash = 1000;
+	int cash = 10000;
 
 private:
 	const sf::Font& Pixelfont;

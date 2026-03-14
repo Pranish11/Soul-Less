@@ -276,7 +276,7 @@ void Shop::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, Inventor
 	const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 	const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
 
-	if (showInventoryFullText && inventoryTextTimer.getElapsedTime().asSeconds() > 1.5f)
+	if (showInventoryFullText && inventoryTextTimer.getElapsedTime().asSeconds() > 2.0f)
 	{
 		showInventoryFullText = false;
 	}

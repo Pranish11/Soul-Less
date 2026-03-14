@@ -6,12 +6,14 @@
 
 class Inventory;
 class Tiles;
+class money;
 
 class place
 {
 public :
 	place();
 	void update(const sf::Vector2f& mouseWorld, Inventory& inventory, Tiles& tilemap, bool canPlace);
+	void generateCash(money& moneyInstance, float deltaTime);
 	void draw(sf::RenderWindow& window);
 private:
 	struct PlacedItem {
@@ -24,5 +26,6 @@ private:
 
 	std::vector<PlacedItem> placedItems;
 	bool wasLeftMouseDown = false;
+	float cashRemainder = 0.f;
 
 };
