@@ -6,6 +6,7 @@
 #include "../../include/inventory/Inventory.hpp"
 #include "../../include/inventory/InventoryManager.hpp"
 #include "../../include/phone/phone.hpp"
+#include "../../include/Money/Money.hpp"
 
 // MOST OF THE CODE FOR THIS FILES IS MADE BY CHATGPT, Idk wtf is going on 
 
@@ -50,6 +51,7 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	items.emplace_back();
 	ShopItems& item1 = items.back();
 	item1.name = "TestChair";
+	item1.price = 200;
 	item1.position = { 420.f, 180.f };
 	item1.rect.setSize({ 120.f, 120.f });
 	item1.rect.setPosition(item1.position);
@@ -83,10 +85,11 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	}
 
 
-	// Item 2 - weed plant
+	// Item 2 - Bed
 	items.emplace_back();
 	ShopItems& item2 = items.back();
 	item2.name = "Bed";
+	item2.price = 900;
 	item2.position = { 640.f,180.f };
 	item2.rect.setSize({ 120.f,120.f });
 	item2.rect.setPosition(item2.position);
@@ -123,6 +126,7 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	items.emplace_back();
 	ShopItems& item3 = items.back();
 	item3.name = "Table";
+	item3.price = 400;
 	item3.position = { 860,180 };
 	item3.rect.setSize({120.f,120.f});
 	item3.rect.setPosition(item3.position);
@@ -159,6 +163,7 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	items.emplace_back();
 	ShopItems& item4 = items.back();
 	item4.name = "Coke";
+	item4.price = 250000;
 	item4.position = { 1080,180 };
 	item4.rect.setSize({ 120.f,120.f });
 	item4.rect.setPosition(item4.position);
@@ -195,6 +200,7 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	items.emplace_back();
 	ShopItems& item5 = items.back();
 	item5.name = "Chemical";
+	item5.price = 25000000;
 	item5.position = { 420,540 };
 	item5.rect.setSize({ 120.f,120.f });
 	item5.rect.setPosition(item5.position);
@@ -231,6 +237,7 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	items.emplace_back();
 	ShopItems& item6 = items.back();
 	item6.name = "B_Weed";
+	item6.price = 1000;
 	item6.position = { 640,540 };
 	item6.rect.setSize({ 120.f,120.f });
 	item6.rect.setPosition(item6.position);
@@ -264,7 +271,7 @@ Shop::Shop() : Shop_Sprite(Shop_Texture)
 	}
 }
 
-void Shop::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, Inventory& inventory, InventoryManager& inventoryManager)
+void Shop::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, Inventory& inventory, InventoryManager& inventoryManager, money& moneyInstance)
 {
 	const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 	const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
@@ -272,6 +279,10 @@ void Shop::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, Inventor
 	if (showInventoryFullText && inventoryTextTimer.getElapsedTime().asSeconds() > 1.5f)
 	{
 		showInventoryFullText = false;
+	}
+	if (showNotEnoughFundsText && notEnoughFundsTextTimer.getElapsedTime().asSeconds() > 2.0f)
+	{
+		showNotEnoughFundsText = false;
 	}
 
 	if (Shop_Close.getGlobalBounds().contains(mouseWorld) && isFreshLeftClick)
@@ -292,11 +303,24 @@ void Shop::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, Inventor
 				continue;
 			}
 
+			if (item.price > 0 && moneyInstance.cash < item.price)
+			{
+				showNotEnoughFundsText = true;
+				notEnoughFundsTextTimer.restart();
+				break;
+			}
+
 			const bool wasAdded = inventoryManager.giveItem(inventory, item.name, 1);
 			if (!wasAdded)
 			{
 				showInventoryFullText = true;
 				inventoryTextTimer.restart();
+				break;
+			}
+
+			if (item.price > 0)
+			{
+				moneyInstance.cash -= item.price;
 			}
 			break;
 		}
@@ -305,6 +329,8 @@ void Shop::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, Inventor
 	wasLeftMouseDown = leftMouseDown;
 }
 
+
+//gonna put every thing here to draw :), its was easier since i had done it early and the text and price are mostly new
 void Shop::draw(sf::RenderWindow& window, const sf::Font& font)
 {
 	window.draw(Shop_Sprite);
@@ -316,7 +342,80 @@ void Shop::draw(sf::RenderWindow& window, const sf::Font& font)
 		window.draw(item.buySign);
 	}
 
-	window.draw(Shop_Close);					// close button rectangle 
+	sf::Text Chair_Text(font, "Chair");
+	sf::Text Chair_Price_Text(font, "Price : $200/-");
+	Chair_Text.setPosition({ 420.f, 140.f });
+	Chair_Price_Text.setPosition({420.f,330.f});
+	Chair_Text.setCharacterSize(16);
+	Chair_Price_Text.setCharacterSize(16);
+	Chair_Text.setFillColor(sf::Color::Black);
+	Chair_Price_Text.setFillColor(sf::Color::Black);
+
+	window.draw(Chair_Price_Text);
+	window.draw(Chair_Text);
+
+	sf::Text Bed_Text(font, "Bed");
+	sf::Text Bed_Price_Text(font, "Price : $900/-");
+	Bed_Text.setPosition({ 640.f, 140.f });
+	Bed_Price_Text.setPosition({ 640.f,330.f });
+	Bed_Text.setCharacterSize(16);
+	Bed_Price_Text.setCharacterSize(16);
+	Bed_Text.setFillColor(sf::Color::Black);
+	Bed_Price_Text.setFillColor(sf::Color::Black);
+
+	window.draw(Bed_Price_Text);
+	window.draw(Bed_Text);
+
+	sf::Text Table_Text(font, "Table");
+	sf::Text Table_Price_Text(font, "Price : $400");
+	Table_Text.setPosition({ 860.f, 140.f });
+	Table_Price_Text.setPosition({ 860.f,330.f });
+	Table_Text.setCharacterSize(16);
+	Table_Price_Text.setCharacterSize(16);
+	Table_Text.setFillColor(sf::Color::Black);
+	Table_Price_Text.setFillColor(sf::Color::Black);
+
+	window.draw(Table_Price_Text);
+	window.draw(Table_Text);
+
+	sf::Text Coke_Text(font, "Coke");
+	sf::Text Coke_Price_Text(font, "Price : $ 250K");
+	Coke_Text.setPosition({ 1080.f, 140.f });
+	Coke_Price_Text.setPosition({ 1080.f,330.f });
+	Coke_Text.setCharacterSize(16);
+	Coke_Price_Text.setCharacterSize(16);
+	Coke_Text.setFillColor(sf::Color::Black);
+	Coke_Price_Text.setFillColor(sf::Color::Black);
+
+	window.draw(Coke_Price_Text);
+	window.draw(Coke_Text);
+
+	sf::Text Chemical_Text(font, "Chemical Stuff");
+	sf::Text Chemical_Price_Text(font, "Price : $ 25M");
+	Chemical_Text.setPosition({ 420.f, 500.f });
+	Chemical_Price_Text.setPosition({ 420.f, 690 });
+	Chemical_Text.setCharacterSize(16);
+	Chemical_Price_Text.setCharacterSize(16);
+	Chemical_Text.setFillColor(sf::Color::Black);
+	Chemical_Price_Text.setFillColor(sf::Color::Black);
+
+	window.draw(Chemical_Price_Text);
+	window.draw(Chemical_Text);
+
+	sf::Text Weed_Text(font, "Better Weed");
+	sf::Text Weed_Price_Text(font, "Price : $ 1000");
+	Weed_Text.setPosition({ 640.f, 500.f });
+	Weed_Price_Text.setPosition({ 640.f, 690 });
+	Weed_Text.setCharacterSize(16);
+	Weed_Price_Text.setCharacterSize(16);
+	Weed_Text.setFillColor(sf::Color::Black);
+	Weed_Price_Text.setFillColor(sf::Color::Black);
+
+	window.draw(Weed_Price_Text);
+	window.draw(Weed_Text);
+
+
+	//window.draw(Shop_Close);					// close button rectangle 
 
 	if (showInventoryFullText)
 	{
@@ -325,5 +424,14 @@ void Shop::draw(sf::RenderWindow& window, const sf::Font& font)
 		inventoryFullText.setFillColor(sf::Color::Red);
 		inventoryFullText.setPosition({ 820.f, 110.f });
 		window.draw(inventoryFullText);
+	}
+
+	if (showNotEnoughFundsText)
+	{
+		sf::Text notEnoughFundsText(font, "Not enough funds");
+		notEnoughFundsText.setCharacterSize(28);
+		notEnoughFundsText.setFillColor(sf::Color::Red);
+		notEnoughFundsText.setPosition({ 780.f, 150.f });
+		window.draw(notEnoughFundsText);
 	}
 }

@@ -15,7 +15,7 @@ money::money(const sf::Font& f) : Pixelfont(f), Cash_Text(Pixelfont, "Cash : "),
 
 void money::update()
 {
-	cash += 1;
+	//cash += 1;
 	Cash_Amount_Display.setString(std::to_string(cash));
 }
 

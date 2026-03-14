@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 class phone;
+class game;
 
 class bank
 {

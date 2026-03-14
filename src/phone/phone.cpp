@@ -77,7 +77,7 @@ phone::phone(): phoneSprite(phoneTexture){
     bool AppOpened = false;
 }
 
-void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inventory& inventory, InventoryManager& inventoryManager)
+void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inventory& inventory, InventoryManager& inventoryManager, money& moneyInstance)
 {
     const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
     const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
@@ -91,7 +91,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
 
     if (Shop_App_Open)
     {
-        ShopApp.update(mouseWorld, *this, inventory, inventoryManager);
+        ShopApp.update(mouseWorld, *this, inventory, inventoryManager, moneyInstance);
         wasLeftMouseDown = leftMouseDown;
         return;
     }
