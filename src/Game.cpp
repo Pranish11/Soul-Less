@@ -1,12 +1,4 @@
 #include "../include/Game.hpp"
-#include "../include/Menu/MenuState.hpp"
-#include "../include/level/Tiles.hpp"
-#include "../include/Menu/Pause.hpp"
-#include "../include/player/Player.hpp"
-#include "../include/Day_Night_Cycle/DayAndNight.hpp"
-#include "../include/phone/phone.hpp"
-#include "../include/Money/Money.hpp"
-
 #include <iostream>
 #include <string>
 
@@ -14,6 +6,9 @@ Game::Game() : window(sf::VideoMode({ 1920, 1080 }), "Game", sf::State::Fullscre
     if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
         std::cerr << "FAILED to load font\n";
     }
+    pausemenu = std::make_unique<Pause>(Pixelfont);
+    Human_Player_Phone = std::make_unique<phone>(Pixelfont);
+    Money_display = std::make_unique<money>(Pixelfont);
     inventory.centerInWindow(window.getSize());
     window.setFramerateLimit(144);
 }
@@ -27,14 +22,6 @@ const sf::Vector2f& Game::getMouseWorld() const
 
 void Game::run()
 {
-    MenuState menu;
-    Tiles gametile;
-    Pause pausemenu(Pixelfont);
-    Player HumanPlayer;
-    DayAndNight timecycle;
-	phone Human_Player_Phone(Pixelfont);
-    money Money_display(Pixelfont);
-
     bool isinmenu = true;
     bool ispaused = false;
     bool isPhoneOpen = false;
@@ -103,7 +90,7 @@ void Game::run()
                 gametile.draw(window);
                 itemPlacer.draw(window);
                 HumanPlayer.draw(window);
-                const PauseAction pauseAction = pausemenu.PauseDraw(window);
+                const PauseAction pauseAction = pausemenu->PauseDraw(window);
                 if (pauseAction == PauseAction::ContinueGame) {
                     ispaused = false;
                 }
@@ -114,15 +101,15 @@ void Game::run()
                     isinmenu = true;
                 }
                 inventoryOpen = false;
-                Money_display.cashDraw(window);
+                Money_display->cashDraw(window);
             }
 
             //Phone
             if (isPhoneOpen && ispaused == false && inventoryOpen == false)
             {
-				Human_Player_Phone.isPhoneHidden = false;       //for boxes to be visible during testing, will be removed later. if not needed remove this line
-                Human_Player_Phone.update(mouseWorld, window, inventory, inventoryManager, Money_display);
-                Human_Player_Phone.draw(window, Pixelfont);
+				Human_Player_Phone->isPhoneHidden = false;       //for boxes to be visible during testing, will be removed later. if not needed remove this line
+                Human_Player_Phone->update(mouseWorld, window, inventory, inventoryManager, *Money_display);
+                Human_Player_Phone->draw(window, Pixelfont);
             }
 
             // Draw inventory if open
@@ -134,8 +121,8 @@ void Game::run()
 
             itemPlacer.update(mouseWorld, inventory, gametile, !isinmenu && !ispaused && !isPhoneOpen && !inventoryOpen);
             if (!ispaused) {
-                itemPlacer.generateCash(Money_display, deltaTime);
-                Human_Player_Phone.generateBusinessIncome(Money_display, deltaTime);
+                itemPlacer.generateCash(*Money_display, deltaTime);
+                Human_Player_Phone->generateBusinessIncome(*Money_display, deltaTime);
             }
 
             //day and night
@@ -144,8 +131,8 @@ void Game::run()
 
             // Money display will be hidden in menu/paused/inventory/phone
             if (!ispaused && !isPhoneOpen && !inventoryOpen) {
-                Money_display.update();
-                Money_display.cashDraw(window);
+                Money_display->update();
+                Money_display->cashDraw(window);
             }
         }
         window.setMouseCursorVisible(true);
