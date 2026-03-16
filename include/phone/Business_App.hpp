@@ -2,19 +2,26 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Game.hpp"
+#include "Bank_App.hpp"
+#include "../Money/Money.hpp"
 
 
 class phone;
 
 class BusinessApp {
 public:
-	BusinessApp();
+	BusinessApp(const sf::Font& f);
 	void update(const sf::Vector2f& mouseWorld, phone& phoneInstance);
 	void draw(sf::RenderWindow& window);
+	void generateCash(money& moneyInstance, float deltaTime);
 
 	bool is_Business_Application_open = false;
 	
 private:
+	bank Bank_Buy;
+
+	const sf::Font& Pixelfont;
+
 	sf::Texture Business_App_Texture;
 	sf::Sprite	Business_App_Sprite;
 
@@ -32,4 +39,16 @@ private:
 
 	sf::RectangleShape Business_App_Close;
 
+	sf::Text Business_One_Text;
+	sf::Text Business_Two_Text;
+	sf::Text Business_Two_Price_Text;
+	sf::Text Business_One_Price_Text;
+
+	sf::Text Business_One_Description_Text;
+	sf::Text Business_Two_Description_Text;
+
+
+	bool First_Business_Bought = false;
+	bool Second_Business_Bought = false;
+	float businessCashRemainder = 0.f;
 };

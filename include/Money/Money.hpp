@@ -6,9 +6,8 @@ class money{
 public:
 	money(const sf::Font& f);
 	void update();
-	void draw(sf::RenderWindow& window);
 	void cashDraw(sf::RenderWindow& window);
-	int cash = 10000;
+	long long cash = 3500000000;
 
 private:
 	const sf::Font& Pixelfont;

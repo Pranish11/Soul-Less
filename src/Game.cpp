@@ -32,7 +32,7 @@ void Game::run()
     Pause pausemenu(Pixelfont);
     Player HumanPlayer;
     DayAndNight timecycle;
-	phone Human_Player_Phone;
+	phone Human_Player_Phone(Pixelfont);
     money Money_display(Pixelfont);
 
     bool isinmenu = true;
@@ -135,6 +135,7 @@ void Game::run()
             itemPlacer.update(mouseWorld, inventory, gametile, !isinmenu && !ispaused && !isPhoneOpen && !inventoryOpen);
             if (!ispaused) {
                 itemPlacer.generateCash(Money_display, deltaTime);
+                Human_Player_Phone.generateBusinessIncome(Money_display, deltaTime);
             }
 
             //day and night

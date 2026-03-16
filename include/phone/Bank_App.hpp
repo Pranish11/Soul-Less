@@ -13,7 +13,7 @@ public:
 	void draw(sf::RenderWindow& window, const sf::Font& font);
 
 	bool is_Bank_App_Open = false;
-	static int Bank_Money;
+	static long long Bank_Money;
 
 
 private:

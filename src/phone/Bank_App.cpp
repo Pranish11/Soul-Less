@@ -7,7 +7,7 @@
 
 // I am so fucking dumb, i should have made seprate texture for witdraw and others :(, i will not make this mistake again, so much time wasted on ts.
 
-int bank::Bank_Money = 0;
+long long bank::Bank_Money = 0;
 
 bank::bank() : Bank_App_Sprite(Bank_App_Texture)
 {

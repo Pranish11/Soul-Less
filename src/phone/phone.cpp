@@ -8,7 +8,7 @@
 #include <utility>
 
 
-phone::phone(): phoneSprite(phoneTexture){
+phone::phone(const sf::Font& font): phoneSprite(phoneTexture), Business(font){
 	if (!phoneTexture.loadFromFile("assets/textures/Phone.png"))
 	{
 		std::cerr << "Error: Failed to load Phone.png\n";
@@ -181,4 +181,9 @@ void phone::draw(sf::RenderWindow& window, const sf::Font& font)
     {
         Business.draw(window);
     }
+}
+
+void phone::generateBusinessIncome(money& moneyInstance, float deltaTime)
+{
+    Business.generateCash(moneyInstance, deltaTime);
 }

@@ -20,22 +20,21 @@ void money::update()
 }
 
 
-// For bank
-void money::draw(sf::RenderWindow& window)
-{
-
-}
-
 // for cash
 void money::cashDraw(sf::RenderWindow& window)
 {
-	const auto bounds = Cash_Text.getLocalBounds();
-	Cash_Text.setOrigin(sf::Vector2f{ bounds.size.x, 0.f });
-	Cash_Text.setPosition(sf::Vector2f{ static_cast<float>(window.getSize().x) - 180.f, 20.f });
-	window.draw(Cash_Text);
+	const float y = 20.f;
+	const float rightPadding = 20.f;
+	const float gap = 10.f;
+	const float windowWidth = static_cast<float>(window.getSize().x);
 
-	const auto Cash_Bounds = Cash_Amount_Display.getLocalBounds();
-	Cash_Amount_Display.setOrigin(sf::Vector2f{ Cash_Bounds.size.x, 0.f });
-	Cash_Amount_Display.setPosition(sf::Vector2f{ static_cast<float>(window.getSize().x) - 20.f, 20.f });
+	const auto cashBounds = Cash_Amount_Display.getLocalBounds();
+	Cash_Amount_Display.setOrigin(sf::Vector2f{ cashBounds.size.x, 0.f });
+	Cash_Amount_Display.setPosition(sf::Vector2f{ windowWidth - rightPadding, y });
 	window.draw(Cash_Amount_Display);
+
+	const auto labelBounds = Cash_Text.getLocalBounds();
+	Cash_Text.setOrigin(sf::Vector2f{ labelBounds.size.x, 0.f });
+	Cash_Text.setPosition(sf::Vector2f{ windowWidth - rightPadding - cashBounds.size.x - gap, y });
+	window.draw(Cash_Text);
 }
