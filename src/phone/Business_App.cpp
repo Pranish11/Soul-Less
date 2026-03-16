@@ -1,10 +1,10 @@
 #include <iostream>
+#include <cmath>
 
 #include "../../include/phone/Business_App.hpp"
 #include "../../include//phone/phone.hpp"
-#include "../../include/game.hpp"
 #include "../../include/phone/Bank_App.hpp"
-#include <cmath>
+
 
 BusinessApp::BusinessApp(const sf::Font& font) : Business_App_Sprite(Business_App_Texture), Pixelfont(font),	Business_One_Text(font),
 																												Business_Two_Text(font),
@@ -116,9 +116,12 @@ BusinessApp::BusinessApp(const sf::Font& font) : Business_App_Sprite(Business_Ap
 
 void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 {
+	const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+	const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
+
 	if (Business_App_Close.getGlobalBounds().contains(mouseWorld))
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		if (isFreshLeftClick)
 		{
 			//is_Business_Application_open = false;
 			phoneInstance.Business_App_Open = false;
@@ -131,9 +134,9 @@ void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 	if (First_Business_Buy.getGlobalBounds().contains(mouseWorld))
 	{
 		First_Business_Buy.setScale({ 1.2f,1.2f });
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && Bank_Buy.Bank_Money >= 150000000)
+		if (isFreshLeftClick && !First_Business_Bought && Bank_Buy.Bank_Money >= 150000000LL)
 		{
-			Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 150000000;
+			Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 150000000LL;
 			First_Business_Bought = true;
 			if (First_Business_Bought)
 			{
@@ -151,9 +154,9 @@ void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 	if (Second_Business_Buy.getGlobalBounds().contains(mouseWorld))
 	{
 		Second_Business_Buy.setScale({ 1.2f,1.2f });
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && Bank_Buy.Bank_Money >= 3500000000)
+		if (isFreshLeftClick && !Second_Business_Bought && Bank_Buy.Bank_Money >= 3500000000LL)
 		{
-			Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 3500000000;
+			Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 3500000000LL;
 			Second_Business_Bought = true;
 			if (Second_Business_Bought)
 			{
@@ -166,6 +169,7 @@ void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 		Second_Business_Buy.setScale({ 1.f,1.f });
 	}
 
+	wasLeftMouseDown = leftMouseDown;
 }
 
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "../Game.hpp"
 #include "Bank_App.hpp"
 #include "../Money/Money.hpp"
 
@@ -51,4 +50,5 @@ private:
 	bool First_Business_Bought = false;
 	bool Second_Business_Bought = false;
 	float businessCashRemainder = 0.f;
+	bool wasLeftMouseDown = false;
 };

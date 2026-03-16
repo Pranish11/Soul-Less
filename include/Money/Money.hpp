@@ -7,7 +7,7 @@ public:
 	money(const sf::Font& f);
 	void update();
 	void cashDraw(sf::RenderWindow& window);
-	long long cash = 3500000000;
+	long long cash = 2000;
 
 private:
 	const sf::Font& Pixelfont;
