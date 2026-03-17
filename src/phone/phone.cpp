@@ -8,7 +8,7 @@
 #include <utility>
 
 
-phone::phone(const sf::Font& font): phoneSprite(phoneTexture), Business(font){
+phone::phone(const sf::Font& font): phoneSprite(phoneTexture), Business(font), Gamble(font){
 	if (!phoneTexture.loadFromFile("assets/textures/Phone.png"))
 	{
 		std::cerr << "Error: Failed to load Phone.png\n";

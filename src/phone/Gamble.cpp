@@ -12,7 +12,7 @@ static int RamdomNumber()
 }
 
 
-gamble::gamble() : Gamble_App_Sprite(Gamble_App_Texture)
+gamble::gamble(const sf::Font& f) : Gamble_App_Sprite(Gamble_App_Texture), Pixelfont(f),rolled_number_text(Pixelfont)
 {
 	if (!Gamble_App_Texture.loadFromFile("assets/textures/Gamble_App.png"))
 	{
@@ -53,6 +53,12 @@ gamble::gamble() : Gamble_App_Sprite(Gamble_App_Texture)
 	Play.setPosition({ 1000.f,950.f });
 	Play.setSize({ 150.f,50.f });
 	Play.setScale({ 1.f,1.f });
+
+
+	rolled_number_text.setFont(Pixelfont);
+	rolled_number_text.setCharacterSize(30);
+	rolled_number_text.setPosition({ 1000.f,700.f });
+	rolled_number_text.setFillColor({ sf::Color::White });
 };
 
 
@@ -69,19 +75,27 @@ void gamble::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 			phoneInstance.Gamble_App_Open = false;
 			phoneInstance.isPhoneHidden = false;		// show the phone icons again
 		}
+		
 	}
 
 	if (Play.getGlobalBounds().contains(mouseWorld))
 	{
+		Play.setScale({ 1.2f,1.2f });
 		if (isFreshLeftClick)
 		{
 			was_Play_Clicked = true;
+			show_rolled_number = false;
 			Guessed_Number = RamdomNumber();
+		}
+		else
+		{
+			Play.setScale({ 1.1f,1.1f });
 		}
 	}
 
-	if (Odd.getGlobalBounds().contains(mouseWorld))
+	if (Odd.getGlobalBounds().contains(mouseWorld) && was_Play_Clicked)
 	{
+		Odd.setScale({ 1.2f,1.2f });
 		if (isFreshLeftClick && was_Play_Clicked && bank_money.Bank_Money >= 100000)
 		{
 			was_Odd_Button_Pressed = true;
@@ -90,17 +104,24 @@ void gamble::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 			{
 				bank_money.Bank_Money += 100000;
 				was_Play_Clicked = false;
+				show_rolled_number = true;
 			}
 			else
 			{
 				bank_money.Bank_Money -= 100000;
 				was_Play_Clicked = false;
+				show_rolled_number = true;
 			}
+		}
+		else
+		{
+			Odd.setScale({ 1.f,1.f });
 		}
 	}
 
-	if (Even.getGlobalBounds().contains(mouseWorld))
+	if (Even.getGlobalBounds().contains(mouseWorld) && was_Play_Clicked)
 	{
+		Even.setScale({ 1.2f,1.2f });
 		if (isFreshLeftClick && was_Play_Clicked && bank_money.Bank_Money >= 100000)
 		{
 			was_Even_Button_Pressed = true;
@@ -109,13 +130,28 @@ void gamble::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 			{
 				bank_money.Bank_Money += 100000;
 				was_Play_Clicked = false;
+				show_rolled_number = true;
 			}
 			else
 			{
 				bank_money.Bank_Money -= 100000;
 				was_Play_Clicked = false;
+				show_rolled_number = true;
 			}
 		}
+		else
+		{
+			Even.setScale({ 1.f,1.f });
+		}
+	}
+
+	//showing rolled number 
+	if (show_rolled_number)
+	{
+		rolled_number_text.setString("Rolled: " + std::to_string(Guessed_Number));
+	}
+	else {
+		rolled_number_text.setString("Rolled: ?");
 	}
 }
 
@@ -127,4 +163,5 @@ void gamble::draw(sf::RenderWindow& window)
 	window.draw(Odd);
 	window.draw(Even);
 	window.draw(Play);
+	window.draw(rolled_number_text);
 }

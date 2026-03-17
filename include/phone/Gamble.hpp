@@ -12,12 +12,13 @@ class phone;
 class gamble {
 
 public:
-	gamble();
+	gamble(const sf::Font& f);
 	void update(const sf::Vector2f& mouseWorld, phone& phoneInstance);
 	void draw(sf::RenderWindow& window);
 
 private:
 	int Guessed_Number = 0;
+	const sf::Font& Pixelfont;
 
 	sf::Texture Gamble_App_Texture;
 	sf::Texture Odd_Texture;
@@ -33,11 +34,14 @@ private:
 	sf::RectangleShape Even;
 	sf::RectangleShape Play;
 
+	sf::Text rolled_number_text;
+
 
 	bool wasLeftMouseDown = false;
 	bool was_Odd_Button_Pressed = false;
 	bool was_Even_Button_Pressed = false;
 	bool was_Play_Clicked = false;
+	bool show_rolled_number = false;
 
 	bank		bank_money;
 };
