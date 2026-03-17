@@ -4,6 +4,7 @@
 #include "Shopiee_App.hpp"
 #include "Bank_App.hpp"
 #include "Business_App.hpp"
+#include "Gamble.hpp"
 #include <string>
 
 class Inventory;
@@ -21,6 +22,7 @@ public:
     bool Shop_App_Open = false;
     bool Bank_App_Open = false;
     bool Business_App_Open = false;
+    bool Gamble_App_Open = false;
 
     bool AppOpened = false;
     sf::Texture phoneTexture;
@@ -43,6 +45,7 @@ private:
     Shop                    ShopApp;
     bank                    BankApp;
     BusinessApp             Business;
+    gamble                  Gamble;
 
     bool wasLeftMouseDown = false;
 };

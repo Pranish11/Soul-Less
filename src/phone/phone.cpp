@@ -108,6 +108,12 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
         wasLeftMouseDown = leftMouseDown;
         return; // block icon clicks while app is open
     }
+    if (Gamble_App_Open)
+    {
+        Gamble.update(mouseWorld, *this);
+        wasLeftMouseDown = leftMouseDown;
+        return;
+    }
 
 
     if (Bank_App_Rect.getGlobalBounds().contains(mouseWorld)) {
@@ -137,6 +143,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
     if (Illegal_App_Rect.getGlobalBounds().contains(mouseWorld)) {
         if (isFreshLeftClick) {
             std::cout << "Illegal App Clicked\n";
+            Gamble_App_Open = true;
         }
     }
 
@@ -180,6 +187,11 @@ void phone::draw(sf::RenderWindow& window, const sf::Font& font)
     if (Business_App_Open)
     {
         Business.draw(window);
+    }
+    
+    if (Gamble_App_Open)
+    {
+        Gamble.draw(window);
     }
 }
 

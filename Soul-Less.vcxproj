@@ -137,6 +137,7 @@
     <ClCompile Include="src\Money\Money.cpp" />
     <ClCompile Include="src\phone\Bank_App.cpp" />
     <ClCompile Include="src\phone\Business_App.cpp" />
+    <ClCompile Include="src\phone\Gamble.cpp" />
     <ClCompile Include="src\phone\IDApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src/Day_Night_Cycle/DayAndNight.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="include\Money\Money.hpp" />
     <ClInclude Include="include\phone\Bank_App.hpp" />
     <ClInclude Include="include\phone\Business_App.hpp" />
+    <ClInclude Include="include\phone\Gamble.hpp" />
     <ClInclude Include="include\phone\IDApp.hpp" />
     <ClInclude Include="include\phone\phone.hpp" />
     <ClInclude Include="include\phone\Shopiee_App.hpp" />
@@ -202,11 +204,15 @@
     <Image Include="assets\textures\Business_Web.png" />
     <Image Include="assets\textures\Buy.png" />
     <Image Include="assets\textures\Buy_Sign.png" />
+    <Image Include="assets\textures\Even.png" />
+    <Image Include="assets\textures\Gamble_App.png" />
     <Image Include="assets\textures\ID_App.png" />
     <Image Include="assets\textures\ID_Page_Phone.png" />
     <Image Include="assets\textures\illegal_App.png" />
+    <Image Include="assets\textures\ODD.png" />
     <Image Include="assets\textures\Owned.png" />
     <Image Include="assets\textures\Phone.png" />
+    <Image Include="assets\textures\Play.png" />
     <Image Include="assets\textures\Shoppiee_App.png" />
     <Image Include="assets\textures\shop_App.png" />
     <Image Include="assets\textures\Weed_Plant_Inventory.png" />

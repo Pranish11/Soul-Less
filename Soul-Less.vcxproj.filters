@@ -69,6 +69,9 @@
     <ClCompile Include="src\phone\Business_App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\phone\Gamble.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -124,6 +127,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\phone\Business_App.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\phone\Gamble.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -222,6 +228,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\Owned.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Gamble_App.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Even.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\ODD.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\Play.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

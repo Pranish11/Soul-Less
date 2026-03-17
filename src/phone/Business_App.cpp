@@ -123,7 +123,7 @@ void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 	{
 		if (isFreshLeftClick)
 		{
-			//is_Business_Application_open = false;
+			//is_Business_Application_open = false;			//no need for this , why did i even do it in other files, stupid??? 
 			phoneInstance.Business_App_Open = false;
 			phoneInstance.isPhoneHidden = false;		// show the phone icons again
 		}
