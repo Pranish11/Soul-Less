@@ -165,3 +165,56 @@ void Inventory::draw(sf::RenderWindow& window) {
         }
     }
 }
+
+std::vector<Inventory::SlotSaveData> Inventory::getSaveSlots() const
+{
+    std::vector<SlotSaveData> out;
+    out.reserve(slots.size());
+
+    for (int i = 0; i < static_cast<int>(slots.size()); ++i) {
+        const InventorySlot& slot = slots[i];
+
+        SlotSaveData data;
+        data.index = i;
+        data.itemName = slot.itemName;
+        data.quantity = slot.quantity;
+
+        out.push_back(std::move(data));
+    }
+
+    return out;
+}
+
+void Inventory::setSaveSlots(const std::vector<SlotSaveData>& saveSlots)
+{
+    clearAll();
+
+    for (const SlotSaveData& slotData : saveSlots) {
+        if (slotData.index < 0 || slotData.index >= static_cast<int>(slots.size())) {
+            continue;
+        }
+        if (slotData.quantity <= 0 || slotData.itemName.empty()) {
+            continue;
+        }
+        if (itemDatabase.find(slotData.itemName) == itemDatabase.end()) {
+            // Unknown item (maybe removed from game) => skip safely.
+            continue;
+        }
+
+        InventorySlot& slot = slots[slotData.index];
+        slot.itemName = slotData.itemName;
+        slot.quantity = slotData.quantity;
+    }
+
+    selectedSlotIndex = -1;
+}
+
+void Inventory::clearAll()
+{
+    for (InventorySlot& slot : slots) {
+        slot.itemName.clear();
+        slot.quantity = 0;
+    }
+
+    selectedSlotIndex = -1;
+}

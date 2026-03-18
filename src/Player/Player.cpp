@@ -94,3 +94,22 @@ void Player::draw(sf::RenderWindow& window)
 {
     window.draw(*playerSprite);
 }
+
+sf::Vector2f Player::getPosition() const
+{
+    if (!playerSprite) {
+        return {};
+    }
+
+    return playerSprite->getPosition();
+}
+
+void Player::setPosition(const sf::Vector2f& position)
+{
+    if (!playerSprite) {
+        return;
+    }
+
+    playerSprite->setPosition(position);
+    playerSpritePos = position;
+}

@@ -101,6 +101,11 @@ void bank::update(const sf::Vector2f& mouseWorld, phone& phoneInstance, money& m
 	wasLeftMouseDown = leftMouseDown;
 }
 
+void bank::syncMouseDownState(bool leftMouseDown)
+{
+	wasLeftMouseDown = leftMouseDown;
+}
+
 void bank::draw(sf::RenderWindow& window, const sf::Font& font)
 {
 	if (is_Bank_App_Open)

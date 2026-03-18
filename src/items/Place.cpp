@@ -115,3 +115,64 @@ void place::draw(sf::RenderWindow& window)
 		window.draw(sprite);
 	}
 }
+
+std::vector<place::PlacedItemSaveData> place::getSavePlacedItems() const
+{
+	std::vector<PlacedItemSaveData> out;
+	out.reserve(placedItems.size());
+
+	for (const PlacedItem& placedItem : placedItems) {
+		PlacedItemSaveData data;
+		data.itemName = placedItem.itemName;
+		data.position = placedItem.position;
+		out.push_back(std::move(data));
+	}
+
+	return out;
+}
+
+void place::clearPlacedItems(Tiles& tilemap)
+{
+	// Clear any occupied tiles back to floor (0).
+	for (const PlacedItem& placedItem : placedItems) {
+		tilemap.setTileAt(placedItem.tileRow, placedItem.tileCol, 0);
+	}
+
+	placedItems.clear();
+	cashRemainder = 0.f;
+}
+
+void place::setSavePlacedItems(const std::vector<PlacedItemSaveData>& items, const Inventory& inventory, Tiles& tilemap)
+{
+	clearPlacedItems(tilemap);
+
+	for (const PlacedItemSaveData& data : items) {
+		if (data.itemName.empty()) {
+			continue;
+		}
+
+		const Item* itemData = inventory.getItemData(data.itemName);
+		if (!itemData || !itemData->texture) {
+			// Unknown item (or missing texture) => skip safely.
+			continue;
+		}
+
+		const int tileCol = static_cast<int>(data.position.x / Tiles::TILE_SIZE);
+		const int tileRow = static_cast<int>(data.position.y / Tiles::TILE_SIZE);
+
+		// Only place on empty floor tiles.
+		if (tilemap.getTileAt(tileRow, tileCol) != 0) {
+			continue;
+		}
+
+		PlacedItem placedItem;
+		placedItem.itemName = data.itemName;
+		placedItem.texture = itemData->texture.get();
+		placedItem.position = { tileCol * Tiles::TILE_SIZE, tileRow * Tiles::TILE_SIZE };
+		placedItem.tileRow = tileRow;
+		placedItem.tileCol = tileCol;
+
+		placedItems.push_back(std::move(placedItem));
+		tilemap.setTileAt(tileRow, tileCol, 2);
+	}
+}

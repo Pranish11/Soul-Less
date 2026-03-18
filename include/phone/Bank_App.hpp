@@ -13,6 +13,7 @@ public:
 	bank();
 	void update(const sf::Vector2f& mouseWorld, phone& phoneInstance, money& moneyInstance);
 	void draw(sf::RenderWindow& window, const sf::Font& font);
+	void syncMouseDownState(bool leftMouseDown);
 
 	bool is_Bank_App_Open = false;
 	static long long Bank_Money;

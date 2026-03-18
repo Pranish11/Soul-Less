@@ -32,4 +32,16 @@ public:
 
     void update(const sf::Vector2f& mouseWorld);
     void draw(sf::RenderWindow& window);
+
+    // Save/Load support:
+    // We store per-slot data so inventory restores exactly, including empty slots.
+    struct SlotSaveData {
+        int index = 0;
+        std::string itemName;
+        int quantity = 0;
+    };
+
+    std::vector<SlotSaveData> getSaveSlots() const;
+    void setSaveSlots(const std::vector<SlotSaveData>& saveSlots);
+    void clearAll();
 };

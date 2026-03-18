@@ -6,6 +6,7 @@
 #include "Business_App.hpp"
 #include "Gamble.hpp"
 #include <string>
+#include <vector>
 
 class Inventory;
 class InventoryManager;
@@ -17,6 +18,10 @@ public:
     void update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inventory& inventory, InventoryManager& inventoryManager, money& moneyInstance);
     void draw(sf::RenderWindow& window, const sf::Font& font);
     void generateBusinessIncome(money& moneyInstance, float deltaTime);
+
+    // Save/Load support
+    std::vector<std::string> getOwnedBusinesses() const;
+    void setOwnedBusinesses(const std::vector<std::string>& businessIds);
     bool isPhoneHidden = true;
     bool IDApplicationOpen = false;
     bool Shop_App_Open = false;

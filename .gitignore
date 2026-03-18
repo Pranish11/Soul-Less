@@ -12,10 +12,12 @@ Release/
 x64/
 x86/
 Win32/
+build/
 
 
 *.obj
 *.pch
+*.ipch
 *.pdb
 *.idb
 *.ipdb
@@ -25,6 +27,7 @@ Win32/
 *.tlog
 *.exp
 *.lib
+*.res
 
 # =========================
 # Executables
@@ -33,6 +36,28 @@ Win32/
 *.dll
 
 
+
+# =========================
+# Resources / assets (generated)
+# =========================
+*.ico
+*.aps
+RCa*
+
+
+# =========================
+# CMake / build-system outputs
+# =========================
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+out/
+
+
+# =========================
+# Editors
+# =========================
+.vscode/
 
 Thumbs.db
 .DS_Store

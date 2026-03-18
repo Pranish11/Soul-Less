@@ -114,24 +114,24 @@
       <AdditionalDependencies>sfml-window-d.lib;sfml-system-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Code_Things\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Code_Things\SFML-3.0.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-window.lib;sfml-system.lib;sfml-graphics.lib;sfml-audio.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
+	  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	    <ClCompile>
+	      <WarningLevel>Level3</WarningLevel>
+	      <FunctionLevelLinking>true</FunctionLevelLinking>
+	      <IntrinsicFunctions>true</IntrinsicFunctions>
+	      <SDLCheck>true</SDLCheck>
+	      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+	      <ConformanceMode>true</ConformanceMode>
+	      <LanguageStandard>stdcpp20</LanguageStandard>
+	      <AdditionalIncludeDirectories>C:\Code_Things\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+	    </ClCompile>
+	    <Link>
+	      <SubSystem>Windows</SubSystem>
+	      <GenerateDebugInformation>true</GenerateDebugInformation>
+	      <AdditionalLibraryDirectories>C:\Code_Things\SFML-3.0.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+	      <AdditionalDependencies>sfml-main.lib;sfml-window.lib;sfml-system.lib;sfml-graphics.lib;sfml-audio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+	    </Link>
+	  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\items\Place.cpp" />
     <ClCompile Include="src\Money\Money.cpp" />
@@ -140,6 +140,7 @@
     <ClCompile Include="src\phone\Gamble.cpp" />
     <ClCompile Include="src\phone\IDApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\save\SaveManager.cpp" />
     <ClCompile Include="src/Day_Night_Cycle/DayAndNight.cpp" />
     <ClCompile Include="src/Game.cpp" />
     <ClCompile Include="src/inventory/Inventory.cpp" />
@@ -155,6 +156,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="RCa06592" />
+    <None Include="resource.aps" />
     <None Include="Soul-Less.slnx" />
   </ItemGroup>
   <ItemGroup>
@@ -176,11 +179,14 @@
     <ClInclude Include="include\phone\IDApp.hpp" />
     <ClInclude Include="include\phone\phone.hpp" />
     <ClInclude Include="include\phone\Shopiee_App.hpp" />
+    <ClInclude Include="include\save\SaveManager.hpp" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets/fonts/Silkscreen-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="icon.ico" />
     <Image Include="assets/ItemTextures/TestImage.png" />
     <Image Include="assets/textures/Am_time.png" />
     <Image Include="assets/textures/BLOB_Forward1.png" />
@@ -216,6 +222,9 @@
     <Image Include="assets\textures\Shoppiee_App.png" />
     <Image Include="assets\textures\shop_App.png" />
     <Image Include="assets\textures\Weed_Plant_Inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

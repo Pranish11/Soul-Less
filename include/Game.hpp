@@ -13,6 +13,7 @@
 #include "Day_Night_Cycle/DayAndNight.hpp"
 #include "phone/phone.hpp"
 #include "Money/Money.hpp"
+#include "save/SaveManager.hpp"
 
 class Game {
 public:
@@ -30,10 +31,11 @@ private:
     Tiles gametile;
     Player HumanPlayer;
     DayAndNight timecycle;
-    std::unique_ptr<Pause> pausemenu;
-    std::unique_ptr<phone> Human_Player_Phone;
-    std::unique_ptr<money> Money_display;
-    bool inventoryOpen = false;
-    sf::Vector2f mouseWorld;
-    std::string selectedInventoryItem;
-};
+	    std::unique_ptr<Pause> pausemenu;
+	    std::unique_ptr<phone> Human_Player_Phone;
+	    std::unique_ptr<money> Money_display;
+	    SaveManager saveManager;
+	    bool inventoryOpen = false;
+	    sf::Vector2f mouseWorld;
+	    std::string selectedInventoryItem;
+	};

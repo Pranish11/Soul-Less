@@ -109,6 +109,41 @@ BusinessApp::BusinessApp(const sf::Font& font) : Business_App_Sprite(Business_Ap
 	Business_Two_Description_Text.setFillColor({ sf::Color::Black });
 };
 
+std::vector<std::string> BusinessApp::getOwnedBusinesses() const
+{
+	std::vector<std::string> owned;
+	if (First_Business_Bought) {
+		owned.push_back("tech_startup");
+	}
+	if (Second_Business_Bought) {
+		owned.push_back("siliconcore_semiconductor");
+	}
+	return owned;
+}
+
+void BusinessApp::refreshOwnedTextures()
+{
+	First_Business_Buy.setTexture(First_Business_Bought ? &Owned_Texture : &Buy_Texture);
+	Second_Business_Buy.setTexture(Second_Business_Bought ? &Owned_Texture : &Buy_Texture);
+}
+
+void BusinessApp::setOwnedBusinesses(const std::vector<std::string>& businessIds)
+{
+	First_Business_Bought = false;
+	Second_Business_Bought = false;
+
+	for (const std::string& id : businessIds) {
+		if (id == "tech_startup") {
+			First_Business_Bought = true;
+		}
+		else if (id == "siliconcore_semiconductor") {
+			Second_Business_Bought = true;
+		}
+	}
+
+	refreshOwnedTextures();
+}
+
 
 
 
@@ -134,16 +169,13 @@ void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 	if (First_Business_Buy.getGlobalBounds().contains(mouseWorld))
 	{
 		First_Business_Buy.setScale({ 1.2f,1.2f });
-		if (isFreshLeftClick && !First_Business_Bought && Bank_Buy.Bank_Money >= 150000000LL)
-		{
-			Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 150000000LL;
-			First_Business_Bought = true;
-			if (First_Business_Bought)
+			if (isFreshLeftClick && !First_Business_Bought && Bank_Buy.Bank_Money >= 150000000LL)
 			{
-				First_Business_Buy.setTexture(&Owned_Texture);
+				Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 150000000LL;
+				First_Business_Bought = true;
+				refreshOwnedTextures();
 			}
 		}
-	}
 	else
 	{
 		First_Business_Buy.setScale({ 1.f,1.f });
@@ -154,16 +186,13 @@ void BusinessApp::update(const sf::Vector2f& mouseWorld, phone& phoneInstance)
 	if (Second_Business_Buy.getGlobalBounds().contains(mouseWorld))
 	{
 		Second_Business_Buy.setScale({ 1.2f,1.2f });
-		if (isFreshLeftClick && !Second_Business_Bought && Bank_Buy.Bank_Money >= 3500000000LL)
-		{
-			Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 3500000000LL;
-			Second_Business_Bought = true;
-			if (Second_Business_Bought)
+			if (isFreshLeftClick && !Second_Business_Bought && Bank_Buy.Bank_Money >= 3500000000LL)
 			{
-				Second_Business_Buy.setTexture(&Owned_Texture);
+				Bank_Buy.Bank_Money = Bank_Buy.Bank_Money - 3500000000LL;
+				Second_Business_Bought = true;
+				refreshOwnedTextures();
 			}
 		}
-	}
 	else
 	{
 		Second_Business_Buy.setScale({ 1.f,1.f });

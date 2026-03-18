@@ -57,7 +57,7 @@ PauseAction Pause::PauseDraw(sf::RenderWindow& window)
 	}
 	if (SaveGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }) && isFreshLeftClick)
 	{
-		// save not implemented yet
+		action = PauseAction::SaveGame;
 	}
 	if (ExitGB.contains(sf::Vector2f{ static_cast<float>(MousePos.x),static_cast<float>(MousePos.y) }) && isFreshLeftClick)
 	{

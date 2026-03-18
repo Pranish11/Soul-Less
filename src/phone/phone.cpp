@@ -121,6 +121,7 @@ void phone::update(const sf::Vector2f& mouseWorld, sf::RenderWindow& window, Inv
             std::cout << "Bank App Clicked\n";
             BankApp.is_Bank_App_Open = true;
             Bank_App_Open = true;
+            BankApp.syncMouseDownState(leftMouseDown);
         }
     }
 
@@ -198,4 +199,14 @@ void phone::draw(sf::RenderWindow& window, const sf::Font& font)
 void phone::generateBusinessIncome(money& moneyInstance, float deltaTime)
 {
     Business.generateCash(moneyInstance, deltaTime);
+}
+
+std::vector<std::string> phone::getOwnedBusinesses() const
+{
+    return Business.getOwnedBusinesses();
+}
+
+void phone::setOwnedBusinesses(const std::vector<std::string>& businessIds)
+{
+    Business.setOwnedBusinesses(businessIds);
 }

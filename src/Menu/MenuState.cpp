@@ -5,31 +5,31 @@
 
 // i can make this better but idc.
 
-void MenuState::StartBtnFunction(sf::RenderWindow& window) {
-    sf::Font Pixelfont;
-    if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
-        std::cerr << "FAILED to load font\n";
-    }
-    Pause pause(Pixelfont);
-    sf::Text title(Pixelfont);
-    title.setString("Soul-Less");
-    title.setCharacterSize(96);
-    title.setFillColor(sf::Color::White);
-    title.setPosition({ 10.f, 100.f });
+void MenuState::StartBtnFunction(sf::RenderWindow& window, bool canContinue) {
+	    sf::Font Pixelfont;
+	    if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
+	        std::cerr << "FAILED to load font\n";
+	    }
+	    Pause pause(Pixelfont);
+	    sf::Text title(Pixelfont);
+	    title.setString("Soul-Less");
+	    title.setCharacterSize(96);
+	    title.setFillColor(sf::Color::White);
+	    title.setPosition({ 10.f, 100.f });
 
-    // START TEXT
-    sf::Text StartText(Pixelfont);
-    StartText.setString("Start");
-    StartText.setCharacterSize(48);
-    StartText.setFillColor(sf::Color::White);
-    StartText.setPosition({ 10.f, 540.f });
+		    // START TEXT
+		    sf::Text StartText(Pixelfont);
+		    StartText.setString("Continue");
+		    StartText.setCharacterSize(48);
+		    StartText.setFillColor(canContinue ? sf::Color::White : sf::Color(120, 120, 120));
+		    StartText.setPosition({ 10.f, 540.f });
 
-    // Load Text
-    sf::Text LoadText(Pixelfont);
-    LoadText.setString("Load");
-    LoadText.setCharacterSize(48);
-    LoadText.setFillColor(sf::Color::White);
-    LoadText.setPosition({ 10.f, 740.f });
+	    // Load Text
+	    sf::Text LoadText(Pixelfont);
+	    LoadText.setString("New Game");
+	    LoadText.setCharacterSize(48);
+	    LoadText.setFillColor(sf::Color::White);
+	    LoadText.setPosition({ 10.f, 740.f });
 
     // for Quit Text
     sf::Text QuitText(Pixelfont);
@@ -45,9 +45,10 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     versionText.setFillColor(sf::Color::White);
     versionText.setPosition({ 10.f, 10.f });
 
-  
-    isVisible = true;
-	isStartClicked = false;
+	   
+	    isVisible = true;
+		isStartClicked = false;
+        isLoadClicked = false;
 
     // Rectangles for buttons
     sf::RectangleShape Start;
@@ -70,40 +71,47 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window) {
     sf::FloatRect LoadButtonGB = Load.getGlobalBounds();
     sf::FloatRect QuitButtonGB = Quit.getGlobalBounds();
 
-    // Mouse position
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+	    // Mouse position + proper "fresh click" handling
+	    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        const bool leftMouseDown = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+        const bool isFreshLeftClick = leftMouseDown && !wasLeftMouseDown;
 
-    // For Start Button
-    if (StartButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-            isVisible = false;
-            isStartClicked = true;
-        }
-    }
+		    // For Start Button
+		    if (StartButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
+		        if (isFreshLeftClick) {
+		            if (canContinue) {
+		                isVisible = false;
+		                isStartClicked = true;
+		            }
+		        }
+		    }
 
-    // For load
-    if (LoadButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-			isVisible = false;
-        }
-    }
+	    // For load
+	    if (LoadButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
+	        if (isFreshLeftClick) {
+				isVisible = false;
+                isLoadClicked = true;
+	        }
+	    }
 
-    // For Quit
-    if (QuitButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-            window.close();
-        }
-    }
+	    // For Quit
+	    if (QuitButtonGB.contains(sf::Vector2f{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) })) {
+	        if (isFreshLeftClick) {
+	            window.close();
+	        }
+	    }
 
-    if (isVisible) {
-        window.draw(title);
-        window.draw(versionText);
-        //window.draw(Start);
-        window.draw(StartText);
-        //window.draw(Load);
-        window.draw(LoadText);
-        //window.draw(Quit);
-        window.draw(QuitText);
-    }
-}
+	    if (isVisible) {
+	        window.draw(title);
+	        window.draw(versionText);
+	        //window.draw(Start);
+	        window.draw(StartText);
+	        //window.draw(Load);
+	        window.draw(LoadText);
+	        //window.draw(Quit);
+	        window.draw(QuitText);
+	    }
+
+        wasLeftMouseDown = leftMouseDown;
+	}
 

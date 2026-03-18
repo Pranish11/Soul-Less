@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <vector>
 #include "Bank_App.hpp"
 #include "../Money/Money.hpp"
 
@@ -14,9 +16,15 @@ public:
 	void draw(sf::RenderWindow& window);
 	void generateCash(money& moneyInstance, float deltaTime);
 
+	// Save/Load support: expose owned businesses as simple IDs.
+	std::vector<std::string> getOwnedBusinesses() const;
+	void setOwnedBusinesses(const std::vector<std::string>& businessIds);
+
 	bool is_Business_Application_open = false;
 	
 private:
+	void refreshOwnedTextures();
+
 	bank Bank_Buy;
 
 	const sf::Font& Pixelfont;

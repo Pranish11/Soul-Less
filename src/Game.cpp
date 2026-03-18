@@ -69,14 +69,23 @@ void Game::run()
 
         window.clear(sf::Color::Black);
 
-        // Menu display
-        if (isinmenu) {
-            menu.StartBtnFunction(window);
+		        // Menu display
+			        if (isinmenu) {
+			            menu.StartBtnFunction(window, saveManager.hasSave());
 
-            if (menu.isStartClicked) {
-                isinmenu = false;
-            }
-        }
+			            if (menu.isStartClicked) {
+			                // Continue: load save if it exists.
+			                const SaveManager::Result result = saveManager.load(HumanPlayer, *Money_display, inventory, itemPlacer, gametile, *Human_Player_Phone);
+			                std::cout << (result.ok ? "[LOAD OK] " : "[LOAD FAIL] ") << result.message << "\n";
+			                if (result.ok) {
+			                    isinmenu = false;
+			                }
+			            }
+			            else if (menu.isLoadClicked) {
+			                // New game
+			                isinmenu = false;
+			            }
+			        }
 
         // In game
         else {
@@ -90,16 +99,20 @@ void Game::run()
                 gametile.draw(window);
                 itemPlacer.draw(window);
                 HumanPlayer.draw(window);
-                const PauseAction pauseAction = pausemenu->PauseDraw(window);
-                if (pauseAction == PauseAction::ContinueGame) {
-                    ispaused = false;
-                }
-                else if (pauseAction == PauseAction::ExitToMainMenu) {
-                    ispaused = false;
-                    isPhoneOpen = false;
-                    inventoryOpen = false;
-                    isinmenu = true;
-                }
+	                const PauseAction pauseAction = pausemenu->PauseDraw(window);
+	                if (pauseAction == PauseAction::ContinueGame) {
+	                    ispaused = false;
+	                }
+	                else if (pauseAction == PauseAction::SaveGame) {
+	                    const SaveManager::Result result = saveManager.save(HumanPlayer, *Money_display, inventory, itemPlacer, *Human_Player_Phone);
+	                    std::cout << (result.ok ? "[SAVE OK] " : "[SAVE FAIL] ") << result.message << "\n";
+	                }
+	                else if (pauseAction == PauseAction::ExitToMainMenu) {
+	                    ispaused = false;
+	                    isPhoneOpen = false;
+	                    inventoryOpen = false;
+	                    isinmenu = true;
+	                }
                 inventoryOpen = false;
                 Money_display->cashDraw(window);
             }

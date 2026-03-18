@@ -5,6 +5,7 @@
 enum class PauseAction {
     None,
     ContinueGame,
+    SaveGame,
     ExitToMainMenu
 };
 

@@ -72,6 +72,9 @@
     <ClCompile Include="src\phone\Gamble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\save\SaveManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Soul-Less.slnx" />
@@ -132,11 +135,23 @@
     <ClInclude Include="include\phone\Gamble.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\save\SaveManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets/fonts/Silkscreen-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <Image Include="icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="assets/ItemTextures/TestImage.png">
       <Filter>Resource Files</Filter>
     </Image>
