@@ -1,5 +1,5 @@
 # Soul-less
-A game I made , to learn sfml and c++, some of the code is done by ai in this projet mostly the saving one 
+A game I made , to learn sfml and c++, some of the code is done by ai in this projet mostly the savemanager one 
 
 ## Installation
 If You want to add your own things here ,
