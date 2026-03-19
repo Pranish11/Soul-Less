@@ -1,12 +1,12 @@
 # Soul-less
-A game I made , to learn sfml and c++, some of the code is done by ai in this projet mostly the savemanager one 
+A game I made to learn sfml and c++, some of the code is done by ai in this projet mostly the savemanager one 
 
 ## Installation
 If You want to add your own things here ,
-1. Make sure you have a C++17 compiler.
+1. Make sure you have a C++17 compiler or higher.
 2. Install SFML (version 3.0 or higher).
 3. Clone this repository:
-   git clone https://github.com/Pranish11/First_cpp_project.git
+   git clone https://github.com/Pranish11/Soul-Less
 
 
 ## Controls
