@@ -40,7 +40,7 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window, bool canContinue) {
 
     // for version text
     sf::Text versionText(Pixelfont);
-    versionText.setString("v1.0.0");
+    versionText.setString("v1.0.1");
     versionText.setCharacterSize(24);
     versionText.setFillColor(sf::Color::White);
     versionText.setPosition({ 10.f, 10.f });
