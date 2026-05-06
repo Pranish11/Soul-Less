@@ -10,7 +10,7 @@
 class Inventory {
 private:
     std::vector<InventorySlot> slots;
-    std::map<std::string, Item*> itemDatabase;
+    std::map<std::string, Item*> itemDatabase;  // Non-owning pointers from InventoryManager
 
     int rows, cols;
     float slotSize;

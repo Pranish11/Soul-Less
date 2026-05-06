@@ -6,30 +6,30 @@
 // i can make this better but idc.
 
 void MenuState::StartBtnFunction(sf::RenderWindow& window, bool canContinue) {
-	    sf::Font Pixelfont;
-	    if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
+	sf::Font Pixelfont;
+	if (!Pixelfont.openFromFile("assets/fonts/Silkscreen-Regular.ttf")) {
 	        std::cerr << "FAILED to load font\n";
-	    }
-	    Pause pause(Pixelfont);
-	    sf::Text title(Pixelfont);
-	    title.setString("Soul-Less");
-	    title.setCharacterSize(96);
-	    title.setFillColor(sf::Color::White);
-	    title.setPosition({ 10.f, 100.f });
+	}
+	Pause pause(Pixelfont);
+    sf::Text title(Pixelfont);
+    title.setString("Soul-Less");
+    title.setCharacterSize(96);
+    title.setFillColor(sf::Color::White);
+    title.setPosition({ 10.f, 100.f });
 
-		    // START TEXT
-		    sf::Text StartText(Pixelfont);
-		    StartText.setString("Continue");
-		    StartText.setCharacterSize(48);
-		    StartText.setFillColor(canContinue ? sf::Color::White : sf::Color(120, 120, 120));
-		    StartText.setPosition({ 10.f, 540.f });
+	// START TEXT
+	sf::Text StartText(Pixelfont);
+	StartText.setString("Continue");
+	StartText.setCharacterSize(48);
+	StartText.setFillColor(canContinue ? sf::Color::White : sf::Color(120, 120, 120));
+	StartText.setPosition({ 10.f, 540.f });
 
-	    // Load Text
-	    sf::Text LoadText(Pixelfont);
-	    LoadText.setString("New Game");
-	    LoadText.setCharacterSize(48);
-	    LoadText.setFillColor(sf::Color::White);
-	    LoadText.setPosition({ 10.f, 740.f });
+	// Load Text
+	sf::Text LoadText(Pixelfont);
+	LoadText.setString("New Game");
+	LoadText.setCharacterSize(48);
+	LoadText.setFillColor(sf::Color::White);
+	LoadText.setPosition({ 10.f, 740.f });
 
     // for Quit Text
     sf::Text QuitText(Pixelfont);
@@ -46,9 +46,9 @@ void MenuState::StartBtnFunction(sf::RenderWindow& window, bool canContinue) {
     versionText.setPosition({ 10.f, 10.f });
 
 	   
-	    isVisible = true;
-		isStartClicked = false;
-        isLoadClicked = false;
+	isVisible = true;
+	isStartClicked = false;
+    isLoadClicked = false;
 
     // Rectangles for buttons
     sf::RectangleShape Start;

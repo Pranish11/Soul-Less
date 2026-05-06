@@ -216,5 +216,7 @@ void Inventory::clearAll()
         slot.quantity = 0;
     }
 
+    itemDatabase.clear();  // Clear non-owning pointers to avoid stale references
+
     selectedSlotIndex = -1;
 }
