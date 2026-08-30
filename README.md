@@ -29,7 +29,8 @@ The gameplay is kinda shitty but here:
 - In the business app you can buy business to increase the cash per second , money will be removed from the bank account.
 
 ## Save location
-C:\User\ (name) \AppData\Local\Soul-Less\save\save.json
+### In Windows
+\AppData\Local\Soul-Less\save\save.json
 
 ## License
 
